@@ -12,9 +12,14 @@ body{
   height:100%;
 }
 
-img {
+.logo-home{
   display:block;
   margin-left: auto;
   margin-right: auto;
   margin-top:50px;
+  border:0;
+}
+
+.nav-color-none {
+  background: rgba(255, 255, 255, 0)!important;
 }
