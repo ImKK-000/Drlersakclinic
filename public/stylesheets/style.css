@@ -1,51 +1,54 @@
-body{
-  font-family: 'Itim','Indie Flower', cursive;
-  font-size: 1.875em; /* 30px/16=1.875em */
-  height: 100%;
-  margin: 0;
-}
+
 .bg-main {
-  background: url('../images/bg/bg_home.png') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-  height:100%;
+    background: url('../images/bg/bg_home.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    height: 100%;
+    font-family: 'Itim','Indie Flower', cursive;
+    font-size: 1.875em;
+    /* 30px/16=1.875em */
 }
 .bg-queue {
-  background: url('../images/bg/bg3.png') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-  height:100%;
+    background: url('../images/bg/bg3.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    height: 100%;
+    font-family: 'Itim','Indie Flower', cursive;
+    font-size: 1.875em;
+    /* 30px/16=1.875em */
+    /*  font-size: 0.875em; /* 14px/16=0.875em */
+     
 }
-.logo-home{
-  display:block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top:100px;
-  border:0;
+.logo-home {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    border: 0;
 }
 .nav-color-none {
-  background: rgba(255, 255, 255, 0)!important;
+    background: rgba(255, 255, 255, 0)!important;
 }
-.navbar-nav > li{
-  padding-left:30px;
-  padding-right:30px;
-}   
+.navbar-nav > li {
+    padding-left: 30px;
+    padding-right: 30px;
+}
 
 #banner_main {
-  width:100%;
-  z-index: 1;
-  position: relative;
+    width: 100%;
+    z-index: 1;
+    position: relative;
 }
 
 .jumbotron {
-  border-style: solid;
-  border-color: #ABABAB;
-  border-width: 1px;
+    border-style: solid;
+    border-color: #ABABAB;
+    border-width: 1px;
 }
-.table-main  {
-  background-color: white;
+.table-main {
+    background-color: white;
 }

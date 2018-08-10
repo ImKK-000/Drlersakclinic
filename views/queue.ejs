@@ -6,36 +6,88 @@
         class="img-responsive"
         alt="Image">
         <div class="jumbotron">
-            <table class="table table-hover table-main " >
-                <caption>List of users</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="row" style="margin-bottom:30px;">
+                <div class="col-12">
+                    <button type="button" class="float-left  btn btn-primary">ใบรับรองแพทย์เพื่อการสมัครงานหรือใบขับขี่</button>
+                    <i class="float-right fas fa-user-plus "></i>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:30px;">
+                <div class="col-6">
+                    <div class="form-inline">
+                        <label for="">Show</label>
+                        &nbsp;
+                        <select class="form-control">
+                            <option>10</option>
+                            <option>25</option>
+                            <option>50</option>
+                            <option>100</option>
+                        </select>
+                        &nbsp;
+                        <label for="">entries</label>
+                    </div>
+                </div>
+                <div class="offset-2 float-right col-4 input-group ">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" ><i class="fas fa-search"></i></span>
+                    </div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Search"
+                        aria-label="Search"
+                        aria-describedby="basic-addon1"></div>
+                </div>
+                <table class="table table-hover table-main ">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>58-100004</td>
+                            <td>นายวงศ์วัฒน ลีนะนิธิกุล</td>
+                            <td>Male</td>
+                            <td>66</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" title='จัดคิว'>
+                                    <i class="fas fa-sign-in-alt">จัดคิว</i>
+                                </button>
+                                <button type="button" class="btn btn-success" title='ข้อมูลผู้ป๋วย'>
+                                    <i class="fas fa-info">ข้อมูลผู้ป๋วย</i>
+                                </button>
+                                <button type="button" class="btn btn-warning" title='แก้ไข'>
+                                    <i class="fas fa-pencil-alt">แก้ไข</i>
+                                </button>
+                                <button type="button" class="btn btn-danger" title='ลบ'>
+                                    <i class="fas fa-trash-alt">ลบ</i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                            <td>@mdo</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                            <td>@mdo</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
