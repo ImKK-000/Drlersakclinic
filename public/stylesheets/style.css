@@ -1,9 +1,10 @@
 body{
   font-family: 'Itim','Indie Flower', cursive;
   font-size: 1.875em; /* 30px/16=1.875em */
-
+  height: 100%;
+  margin: 0;
 }
-.full {
+.bg-main {
   background: url('../images/bg/bg_home.png') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -11,7 +12,14 @@ body{
   -o-background-size: cover;
   height:100%;
 }
-
+.bg-queue {
+  background: url('../images/bg/bg3.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  height:100%;
+}
 .logo-home{
   display:block;
   margin-left: auto;
@@ -26,3 +34,18 @@ body{
   padding-left:30px;
   padding-right:30px;
 }   
+
+#banner_main {
+  width:100%;
+  z-index: 1;
+  position: relative;
+}
+
+.jumbotron {
+  border-style: solid;
+  border-color: #ABABAB;
+  border-width: 1px;
+}
+.table-main  {
+  background-color: white;
+}
