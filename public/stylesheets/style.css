@@ -1,8 +1,28 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+body{
+  font-family: 'Itim','Indie Flower', cursive;
+  font-size: 1.875em; /* 30px/16=1.875em */
+
+}
+.full {
+  background: url('../images/bg/bg_home.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  height:100%;
 }
 
-a {
-  color: #00B7FF;
+.logo-home{
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:50px;
+  border:0;
 }
+.nav-color-none {
+  background: rgba(255, 255, 255, 0)!important;
+}
+.navbar-nav > li{
+  padding-left:30px;
+  padding-right:30px;
+}   
