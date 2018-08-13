@@ -52,3 +52,9 @@
 .table-main {
     background-color: white;
 }
+.center {
+    margin: auto;
+    width: 50%;
+    /* border: 1px solid blue; */
+    padding: 10px;
+}
