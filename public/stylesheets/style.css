@@ -18,7 +18,7 @@
     -o-background-size: cover;
     height: 100%;
     font-family: 'Itim','Indie Flower', cursive;
-    font-size: 1.875em;
+    font-size: 20px;
     /* 30px/16=1.875em */
     /*  font-size: 0.875em; /* 14px/16=0.875em */
      
@@ -51,4 +51,10 @@
 }
 .table-main {
     background-color: white;
+}
+.center {
+    margin: auto;
+    width: 50%;
+    /* border: 1px solid blue; */
+    padding: 10px;
 }
