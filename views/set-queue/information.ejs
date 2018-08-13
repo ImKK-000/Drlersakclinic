@@ -21,7 +21,7 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <% include component/cardprofile.ejs %>
+                        <% include component/cardtimeline.ejs %>
                     </div>
                 </div>
 
@@ -29,3 +29,10 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function toggle_detail(num) {
+        var detail_count = 'div.detail'.concat(num);
+        $(detail_count).slideToggle(500);
+    }
+</script>
