@@ -11,6 +11,12 @@ app.get('/', function(req, res, next) {
 app.get('/queue', function(req, res, next) {
   res.render('set-queue/queue');
 });
+app.get('/queueing', function(req, res, next) {
+    res.render('set-queue/queueing');
+});
+app.get('/appointment', function(req, res, next) {
+    res.render('set-queue/appointment');
+});
 
 app.get('/queue/information', function(req, res, next) {
   res.render('set-queue/information');
