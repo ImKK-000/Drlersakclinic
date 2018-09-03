@@ -1,0 +1,32 @@
+<% extend('../template/layout-main') %>
+
+<div class="bg-queue">
+    <img
+        id="banner_main"
+        src="/../images/banner/banner1.png"
+        class="img-responsive"
+        alt="Image"/>
+    <div class="row">
+        <div class="offset-1 col-11 ">
+            <div class="jumbotron">
+                <div class="row">
+                    <button type="button" class="btn btn-info ">General Information</button>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <% include component/cardprofile.ejs %>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <% include component/form-remedy.ejs %>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -9,7 +9,16 @@ app.get('/', function(req, res, next) {
 });
 
 app.get('/queue', function(req, res, next) {
-  res.render('queue');
+  res.render('set-queue/queue');
+});
+
+app.get('/queue/information', function(req, res, next) {
+  res.render('set-queue/information');
+});
+
+
+app.get('/queue/remedy', function(req, res, next) {
+  res.render('set-queue/remedy');
 });
 // router.get('/', function(req, res, next) {
 //   res.render('index', { title: 'Express' });
