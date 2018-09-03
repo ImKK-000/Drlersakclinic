@@ -1,0 +1,222 @@
+<% extend('../template/layout-main') %>
+<style type="text/css">
+    .hr-icon-action {
+        width: 55px;
+    }
+    .fa-user-plus {
+        padding-top: 3px;
+        color: #555555;
+    }
+    .fa-user-plus:hover {
+        color: #29BEC5;
+    }
+    /* modal */
+    .modal-header {
+        padding-bottom: 5px;
+    }
+    .modal-footer {
+        padding: 0;
+    }
+    .modal-footer .btn-group button {
+        height:40px;
+        border-top-left-radius : 0;
+        border-top-right-radius : 0;
+        border: none;
+        border-right: 1px solid #ddd;
+    }
+    .modal-footer .btn-group:last-child > button {
+        border-right: 0;
+    }
+    .table-main td {
+        background-color: white;
+    }
+    /* end modal */
+    .tittle{
+        margin-top: -100px;
+        margin-left: -70px;
+        color:white;
+    }
+
+    detail {
+        font-weight: normal;
+    }
+    .modal-dialog {
+        width: 650px;
+    }
+    .modal-body-info {
+        margin-bottom: -34px;
+    }
+    .modal-scrollfix.modal-scrollfix {
+        overflow-y: hidden;
+    }
+</style>
+<script type="text/javascript">
+</script>
+<div class="container main-content">
+    <div class="jumbotron">
+        <div class = "col-md-12 tittle">
+            <h3 id="main-title">Queue</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="input-group">
+                    <input id="btn_toggle_tr" type="button" class="btn btn-success" value="Show All">
+                </div>
+
+            </div>
+
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-3">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Show </label>
+                                <div class="col-sm-6">
+                                    <select name="datalength" id="datalength" class="form-control input">
+                                        <option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option>
+                                    </select>
+                                </div>
+                                <label class="col-sm-3 control-label" style="margin-left: -20px;"> entries</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-1" style="margin-right: -30px;">
+                        <div class="checkbox" style="margin-top: 2px;">
+                            <label><input type="checkbox" value="" name="filter_enable" id="filter_enable" checked="" style="margin-top: 10px;"></label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" style="margin-right: -10px;">
+                        <div class="input-group">
+                            <span class="input-group-addon">Date </span>
+                            <input type="text" class="form-control"  name="date_filter" id="date_filter" value="" readonly style="background-color: #fff;z-index: 999;">
+                        </div>
+                    </div>
+                    <div class="col-sm-4 pull-right">
+                        <div class="form-group">
+                            <div class="icon-addon">
+                                <input id="keyword" name="keyword" type="text" placeholder="Search" class="form-control" data-col="data-filter" autocomplete="off">
+                                <label class="glyphicon glyphicon-search"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <table id="resultTable" class="table table-hover table-condensed table-main">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th><center>Age</center></th>
+                        <th>Phone.</th>
+                        <th>Note</th>
+                        <th>Date</th>
+                        <th><center>Time Start</center></th>
+                        <th><center>Time End</center></th>
+                        <th class='hr-icon-action'></th>
+                        <th class='hr-icon-action'></th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div id="total_entries" name="total_entries" style="margin: 8px 0;"></div>
+            </div>
+            <div class="col-md-8">
+                <ul class="pagination pull-right justify-content-end" id="table_paginate" style="margin: 0px 0; display: none;">
+                    <li class="page-item"><a href="#!" data-idx="1" tabindex="0">First</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="$id" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="queue.php" method="POST" role="form">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h2 class="modal-title text-center" id="lineModalLabel">Queued</h2>
+                </div>
+                <div class="modal-body modal-body-info">
+                    <p>One fine body&hellip;</p>
+                </div>
+                <div class="modal-body">
+                    <!-- content goes here -->
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="">Chief Complaint (อาการสำคัญ)<span style="color: red; font-size: 130%;">**</span></label>
+                            <input type="text" class="form-control" placeholder="" required name="chief_complaint">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="">Present illness (ประวัติปัจจุบัน)</label>
+                            <textarea class="form-control" rows="5" name="present_illness"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="">Body temperature (อุณหภูมิของร่างกาย)<detail> (°C)</detail></label>
+                            <input type="number" class="form-control" placeholder="" min="0" max="" step="0.01" name="temperature">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Blood pressure (ความดันโลหิต)<detail> (mmHg)</detail></label>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <input type="number" class="form-control pressure_1" placeholder="" min="0" max="" step="0.01" name="pressure_1">
+                                </div>
+                                <div class="col-md-2">
+                                    <label style="font-size: 200%; padding-left: 5px;">/</label>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="number" class="form-control pressure_2" placeholder="" min="0" max="" step="0.01" name="pressure_2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="">Heart rate (อัตราการเต้นของหัวใจ)<detail> (per min)</detail></label>
+                            <input type="number" class="form-control" placeholder="" min="0" max="" step="0.01" name="heart">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Respiratory rate (อัตราการหายใจ)<detail> (per min)</detail></label>
+                            <input type="number" class="form-control" placeholder="" min="0" max="" step="0.01" name="respiratory">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="">Body Weight (น้ำหนักตัว)<detail> (kg)</detail></label>
+                            <input type="number" class="form-control" placeholder="" min="0" max="" step="0.01" name="weight">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Height (ความสูง)<detail> (cm)</detail></label>
+                            <input type="number" class="form-control" placeholder="" min="0" max="" step="0.01" name="height">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                        <div class="btn-group" role="group">
+                            <!-- <input type="hidden" name="appointment_id" id="appointment_id" value=""> -->
+                            <button type="button submit" class="btn btn-success btn-hover-green" role="button" name="insert_queue">Submit</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"  role="button">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
