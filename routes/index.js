@@ -17,7 +17,9 @@ app.get('/queueing', function(req, res, next) {
 app.get('/appointment', function(req, res, next) {
     res.render('set-queue/appointment');
 });
-
+app.get('/Adduser', function(req, res, next) {
+    res.render('patients/creatpatients');
+});
 app.get('/queue/information', function(req, res, next) {
   res.render('set-queue/information');
 });
