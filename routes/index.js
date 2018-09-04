@@ -20,6 +20,14 @@ app.get('/appointment', function(req, res, next) {
 app.get('/Adduser', function(req, res, next) {
     res.render('patients/creatpatients');
 });
+app.get('/Doctor', function(req, res, next) {
+    res.render('Diagnosis/index');
+});
+app.get('/examination', function(req, res, next) {
+    res.render('Diagnosis/examination');
+});
+
+
 app.get('/queue/information', function(req, res, next) {
   res.render('set-queue/information');
 });
