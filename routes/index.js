@@ -26,6 +26,9 @@ app.get('/Doctor', function(req, res, next) {
 app.get('/Doctor/history', function(req, res, next) {
     res.render('Diagnosis/history');
 });
+app.get('/Doctor/medical_certificate', function(req, res, next) {
+    res.render('Diagnosis/medical_certificate');
+});
 app.get('/examination', function(req, res, next) {
     res.render('Diagnosis/examination');
 });
