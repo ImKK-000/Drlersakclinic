@@ -23,6 +23,9 @@ app.get('/Adduser', function(req, res, next) {
 app.get('/Doctor', function(req, res, next) {
     res.render('Diagnosis/index');
 });
+app.get('/Doctor/history', function(req, res, next) {
+    res.render('Diagnosis/history');
+});
 app.get('/examination', function(req, res, next) {
     res.render('Diagnosis/examination');
 });

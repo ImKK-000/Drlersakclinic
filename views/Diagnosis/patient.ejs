@@ -1,6 +1,9 @@
 <% extend('../template/layout-main') %>
-<style type="text/css">
 
+<style type="text/css">
+    label {
+        margin-top: 6px;
+    }
     .td-action {
     //max-width: 25px;
     }
@@ -49,6 +52,7 @@
     }
 
 
+    // page loading
     @-webkit-keyframes spin {
         0% {
             -webkit-transform: rotate(0deg);
@@ -93,77 +97,23 @@
         border-style: double;
         border-width: 2rem;
     }
-
 </style>
 <script type="text/javascript">
 </script>
 <div class="container main-content">
     <div class="jumbotron">
         <div class = "col-md-12 tittle">
-            <h3 id="main-title"></h3>
-            <script type="text/javascript">
-                var pathname = window.location.pathname;
-                if (pathname.match('queue') != null)
-                    $('#main-title').text('Queue');
-                else
-                    $('#main-title').text('Diagnosis');
-            </script>
+            <h3 id="main-title">{{ $title }}</h3>
         </div>
 
         <div class="row row-search">
 
-            <div class="col-md-4">
-                <button href='#' type='button' class="btn btn-primary" data-toggle='modal' data-target='#medical_certificate2'>
-                    <span class="fa fa-file-text-o" style="padding-right: 5px;"></span> ใบรับรองแพทย์เพื่อการสมัครงาน/ใบขับขี่
-                </button>
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-md-offset-4"></div>
 
-            </div>
-
-            <div class="col-md-1">
-                <a class="icon-add-patient" href="/Adduser">
-                    <i class="fa fa-user-plus fa-2x"></i>
-                </a>
-            </div>
-            <!--@else-->
-            <!--<div class="col-md-4"></div>-->
-            <!--<div class="col-md-4 col-md-offset-4"></div>-->
-            <!--@endif-->
         </div>
 
-
-
-        <diV class="row" style="margin-top: 30px;">
-            <div class="col-md-3">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label" style="margin-top: 0px;">Show </label>
-                        <div class="col-sm-6">
-                            <select name="datalength" id="datalength" class="form-control input">
-                                <option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option>
-                            </select>
-                        </div>
-                        <label class="col-sm-3 control-label" style="margin-left: -20px; margin-top: 0px;"> entries</label>
-                    </div>
-                </form>
-            </div>
-            <div class="col-md-6">
-
-            </div>
-
-            <div class="col-md-3">
-                <div class="form-group">
-                    <div class="icon-addon">
-                        <input id="keyword" name="keyword" type="text" placeholder="Search" class="form-control" data-col="data-filter" autocomplete="off">
-                        <label class="glyphicon glyphicon-search" style="margin-top: 0px;"></label>
-                    </div>
-                </div>
-            </div>
-        </diV>
-
-
-        <div class="row" style="margin-top: 10px;">
+        <div class="row" style="margin-top: 40px;">
             <div class="col-md-12" id="divPageLoader" style="display: none;">
                 <div class="loading loading--double" style="width: 90px; height: 90px; margin: 0 auto;"></div>
             </div>
@@ -177,7 +127,6 @@
                         <th>Name</th>
                         <th>Gender</th>
                         <th><center>Age</center></th>
-                        <th>Phone</th>
                         <th class='hr-icon-action'></th>
                         <th class='hr-icon-action'></th>
                     </tr>
@@ -202,12 +151,12 @@
 </div>
 <!-- modal -->
 <!-- medical certificate 2 modal -->
-<div class="modal" id="medical_certificate2" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg  modal-dialog-centered">
-
+<div class="modal fade" id="medical_certificate2" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        {!! Form::open(['route'=>'medicalCertificate2', 'method'=>'POST', 'target'=>'_blank']) !!}
         <div class="modal-content">
-            <div class="modal-header text-center">
-
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                 <h2 class="modal-title text-center" id="lineModalLabel">ใบรับรองแพทย์เพื่อการสมัครงาน/ใบขับขี่</h2>
             </div>
             <div class="modal-body">
@@ -249,11 +198,10 @@
                 </div>
             </div>
         </div>
-
+        {{ Form::close() }}
     </div>
 </div>
 <!-- end medical certificate 2 modal -->
-
 <div class="modal fade" id="enqueue" tabindex="-1" role="dialog" aria-labelledby="enqueue" aria-hidden="true">
     <div class="modal-dialog">
         <form action="{{ url('queue') }}" method="POST" role="form">

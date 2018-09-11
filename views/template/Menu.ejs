@@ -83,6 +83,37 @@
                     </li>
                 </ul>
             </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-doctor_queue">
+                    <a href="/Doctor">HOME</a>
+                </li>
+                <li class="nav-doctor_patient">
+                    <a href="{{ url('doctor/patient') }}">PATIENT</a>
+                </li>
+                <li class="nav-medical_certificate">
+                    <a href="/Doctor/history">HISOTORY</a>
+                </li>
+                <li class="nav-medical_certificate">
+                    <a href="{{ url('doctor/medical_certificate') }}">CERTIFICATE</a>
+                </li>
+                <li class="doctor_logout">
+                    <a href="{{ url('logout') }}">LOGOUT</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="drug_home">
+                    <a href="{{ url('drug') }}">HOME</a>
+                </li>
+                <li class="drug_drug">
+                    <a href="{{ url('drug/stock') }}">DRUG<span style="padding-right: 4px;"></span>STOCK</a>
+                </li>
+                <li class="nav-drug_patient">
+                    <a href="{{ url('drug/patient') }}">PATIENT</a>
+                </li>
+                <li class="drug_logout">
+                    <a href="{{ url('logout') }}">LOGOUT</a>
+                </li>
+            </ul>
 
         </div>
     </div>
