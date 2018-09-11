@@ -1,0 +1,122 @@
+
+<style type="text/css">
+    /*body {*/
+        /*font-family: 'Lato';*/
+    /*}*/
+    .navbar-right {
+        padding-right: 15px;
+    }
+    .navbar-left
+    {
+        padding-left: 250px;
+    }
+    .navbar
+    {
+        font-size: 80%;
+    }
+    .hr-action {
+        width: 55px;
+    }
+    td{
+        /*text-align: right;*/
+        background-color: white;
+    }
+    th{
+        /*text-align: right;*/
+    }
+    .tittle{
+        margin-top: -100px;
+        margin-left: -70px;
+        color:white;
+    }
+
+    detail {
+        font-weight: normal;
+    }
+
+    .td-action {
+        max-width: 30px;
+    }
+
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+        vertical-align: middle;
+    }
+</style>
+
+<div class="container-fluid">
+    <img
+            id="banner_main"
+            src="/../images/banner/banner1logo.png"
+            class="img-responsive"
+            alt="Image"/>
+
+</div>
+
+
+<div class="navbar navbar-expand-lg ">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- <a class="navbar-brand" href="#"><span>ClinicdrLersak</span></a> -->
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+
+            <div class="nav-queue">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="queue_home">
+                        <a href="/queue">HOME</a>
+                    </li>
+                    <li class="queue_queue">
+                        <a href="/queueing">QUEUING</a>
+                    </li>
+                    <li class="queue_appointment">
+                        <a href="/appointment">APPOINTMENT</a>
+                    </li>
+                    <li class="queue_logout">
+                        <a href="{{ url('logout') }}">LOGOUT</a>
+                    </li>
+                </ul>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-doctor_queue">
+                    <a href="/Doctor">HOME</a>
+                </li>
+                <li class="nav-doctor_patient">
+                    <a href="{{ url('doctor/patient') }}">PATIENT</a>
+                </li>
+                <li class="nav-medical_certificate">
+                    <a href="/Doctor/history">HISOTORY</a>
+                </li>
+                <li class="nav-medical_certificate">
+                    <a href="/Doctor/medical_certificate">CERTIFICATE</a>
+                </li>
+                <li class="doctor_logout">
+                    <a href="{{ url('logout') }}">LOGOUT</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="drug_home">
+                    <a href="{{ url('drug') }}">HOME</a>
+                </li>
+                <li class="drug_drug">
+                    <a href="{{ url('drug/stock') }}">DRUG<span style="padding-right: 4px;"></span>STOCK</a>
+                </li>
+                <li class="nav-drug_patient">
+                    <a href="{{ url('drug/patient') }}">PATIENT</a>
+                </li>
+                <li class="drug_logout">
+                    <a href="{{ url('logout') }}">LOGOUT</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+</body>

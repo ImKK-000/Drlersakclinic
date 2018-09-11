@@ -1,0 +1,2241 @@
+<% extend('../template/layout-main') %>
+<style type="text/css">
+    .customin1 label {
+        margin-top: 7px;
+    }
+    .input-pain_score {
+        width: 100px;
+    }
+    .input-amount-drug {
+        width: 100px;
+    }
+    .form-group {
+        padding-bottom: 30px;
+    }
+    .nav-tabs {
+        border-bottom: 0px;
+    }
+
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+        background: #EEE;
+    }
+    .panel-body{
+        background: #EEE;
+    }
+    .my_panel{
+        background: white;
+        border-radius: 5px;
+        /*box-shadow: 4px 8px 10px 0 #ccc;*/
+    }
+    .panel-default {
+        border-color: #EEE;
+    }
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+        border: 1px solid #EEE;
+    }
+    .jumbotron {
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+        border: none;
+    }
+    hr {
+        border: 0;
+        height: 2px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(73, 202, 187), rgba(0, 0, 0, 0));
+    }
+    #wPaint {
+        position: relative;
+        width: 988px;
+        height: 522px;
+        background-color: #B7B7B7;
+        margin: 0px auto 0px auto;
+    }
+    .tab-header {
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+        color: #49CABB;
+    }
+    a {
+        color: #64A6DE;
+    }
+    #cd-timeline::before {
+        background: rgba(73, 202, 187, 0.44);
+    }
+    .tittle{
+        margin-top: -100px;
+        margin-left: -10px;
+        color:white;
+    }
+
+    detail {
+        font-weight: normal;
+    }
+    .table-vitalsign th, .table-vitalsign td {
+        text-align: center;
+    }
+    .panel-information {
+        background-color: #fff;
+    }
+    .btn-custom {
+        margin-top : 25px;
+    }
+    .pe-hidden-content {
+        display: none;
+    }
+    /* modal */
+    .modal-header {
+        padding-bottom: 5px;
+    }
+    .modal-footer {
+        padding: 0;
+    }
+    .modal-footer .btn-group button {
+        height:40px;
+        border-top-left-radius : 0;
+        border-top-right-radius : 0;
+        border: none;
+        border-right: 1px solid #ddd;
+    }
+    .modal-footer .btn-group:last-child > button {
+        border-right: 0;
+    }
+    .table-main td {
+        background-color: white;
+    }
+    .row-search {
+        height: 10px;
+    }
+    .modal-backdrop {
+        z-index: 0;
+    }
+    .modal-allergy {
+        background-color:rgba(255,0,0,0.3);
+    }
+    #plus-amount-drug {
+
+    }
+    #minus-amount-drug {
+        color : #E68D8D;
+    }
+    #minus-amount-drug:hover {
+        color : #A52A2A;
+    }
+    #mylabel{
+        text-align:right;
+    }
+    }
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+
+</style>
+<div class="container main-content">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#treatment" class="tab-header">Treatment</a></li>
+        <li><a data-toggle="tab" href="#information" class="tab-header">Information</a></li>
+        <li><a data-toggle="tab" href="#history" class="tab-header">History</a></li>
+    </ul>
+    <div class = "col-md-12 tittle">
+        <h3>Diagnosis</h3>
+    </div>
+    <div class="tab-content">
+        <!-- treatment -->
+        <div id="treatment" class="tab-pane fade in active">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="jumbotron">
+                        <div class="great">General Information</div>
+
+                        <div class="form-group">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Gender</th>
+                                    <th>Age</th>
+                                    <!-- Weight -->
+                                    <th>BW<detail> (kg)</detail></th>
+                                    <!-- Height -->
+                                    <th>Ht<detail> (cm)</detail></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><?=$name?></td>
+                                    <td><?=$gender?></td>
+                                    <td><?=$age?></td>
+                                    <td><?=$weight?></td>
+                                    <td><?=$height?></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div><hr>
+
+                        <div class="great">Vital sign</div>
+                        <div class="form-group">
+                            <table class="table table-striped table-vitalsign">
+                                <thead>
+                                <tr>
+                                    <!-- Body Temperature -->
+                                    <th>BT<detail> (°C)</detail></th>
+                                    <!-- Blood pressure -->
+                                    <th>BP<detail> (mmHg.)</detail></th>
+                                    <!-- Heart rate -->
+                                    <th>HR<detail> (per min.)</detail></th>
+                                    <!-- Respiratory rate -->
+                                    <th>RR<detail> (per min.)</detail></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><?=$respiratory?></td>
+                                    <td><?=$pressure?></td>
+                                    <td><?=$temperature?></td>
+                                    <td><?=$heart?></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div><hr>
+
+                        <form action="{{ url('doctor/bill') }}" method="POST" role="form">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <div class="great">Chief Complaint</div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <textarea class="form-control" rows="5" name="chief_complaint"><?=$chief_complaint?></textarea>
+                                    </div>
+                                </div>
+                            </div><hr>
+
+                            <div class="form-group">
+                                <div class="great">Present illness</div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <textarea class="form-control" rows="5" name="present_illness"><?=$present_illness?></textarea>
+                                    </div>
+                                </div>
+                            </div><hr>
+
+                            <div class="great">Pass history / Comorbid disease</div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <textarea class="form-control" rows="5" name="comorbid_disease"><?=nl2br($comorbid_disease)?></textarea>
+                                    </div>
+                                </div>
+
+                            </div><hr>
+
+                            <div class="great">Allergy</div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <textarea class="form-control" rows="5" name="allergy"><?=$allergy?></textarea>
+                                    </div>
+                                </div>
+                            </div><hr>
+
+                            <div class="great">Physical examination</div>
+                            <div class="form-group">
+                                <div class="form-group well">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4>General appearance</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <?php
+													if(!isset($general_appearance))
+													{
+														$general_appearance = "";
+													}
+												?>
+                                            <textarea class="form-control" rows="5" name="general_appearance"><?=$general_appearance?></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group well">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4>HEENT</h4>
+                                        </div>
+                                        <div class="radio">
+                                            <div class="col-md-1">
+                                                <label>
+                                                    <input type="radio" name="heent_status" id="heent_status" onchange="peCheckboxFunction()" value="1">
+                                                    Normal
+                                                </label>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <label>
+                                                    <input type="radio" name="heent_status" id="heent_status" onchange="peCheckboxFunction()" value="2">
+                                                    Abnormal
+                                                </label>
+                                            </div>
+
+                                            <?php
+													if(isset($heent_status))
+													{
+												?>
+                                            <script type="text/javascript">
+                                                $("input[id=heent_status][value=<?=$heent_status?>]").prop('checked', true);
+                                            </script>
+                                            <?php
+													}
+												?>
+                                        </div>
+                                    </div>
+                                    <div class="row pe-hidden-content" id="textarea-heent">
+                                        <div class="col-md-5">
+                                            <?php
+													if(!isset($heent_text))
+													{
+														$heent_text = "";
+													}
+												?>
+                                            <textarea class="form-control" rows="5" name="heent_text"><?=$heent_text?></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group well">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4>CVS.</h4>
+                                        </div>
+                                        <div class="radio">
+                                            <div class="col-md-1">
+                                                <label>
+                                                    <input type="radio" name="cvs_status" id="cvs_status" onchange="peCheckboxFunction()" value="1">
+                                                    Normal
+                                                </label>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <label>
+                                                    <input type="radio" name="cvs_status" id="cvs_status" onchange="peCheckboxFunction()" value="2">
+                                                    Abnormal
+                                                </label>
+                                            </div>
+                                            <?php
+													if(isset($cvs_status))
+													{
+												?>
+                                            <script type="text/javascript">
+                                                $("input[id=cvs_status][value=<?=$cvs_status?>]").prop('checked', true);
+                                            </script>
+                                            <?php
+													}
+												?>
+                                        </div>
+                                    </div>
+                                    <div class="row pe-hidden-content" id="textarea-cvs">
+                                        <div class="col-md-5">
+                                            <?php
+													if(!isset($cvs_text))
+													{
+														$cvs_text = "";
+													}
+												?>
+                                            <textarea class="form-control" rows="5" name="cvs_text"><?=$cvs_text?></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group well">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4>Chest</h4>
+                                        </div>
+                                        <div class="radio">
+                                            <div class="col-md-1">
+                                                <label>
+                                                    <input type="radio" name="chest_status" id="chest_status" onchange="peCheckboxFunction()" value="1">
+                                                    Normal
+                                                </label>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <label>
+                                                    <input type="radio" name="chest_status" id="chest_status" onchange="peCheckboxFunction()" value="2">
+                                                    Abnormal
+                                                </label>
+                                            </div>
+                                            <?php
+													if(isset($chest_status))
+													{
+												?>
+                                            <script type="text/javascript">
+                                                $("input[id=chest_status][value=<?=$chest_status?>]").prop('checked', true);
+                                            </script>
+                                            <?php
+													}
+												?>
+                                        </div>
+                                    </div>
+                                    <div class="row pe-hidden-content" id="textarea-chest">
+                                        <div class="col-md-5">
+                                            <?php
+													if(!isset($chest_text))
+													{
+														$chest_text = "";
+													}
+												?>
+                                            <textarea class="form-control" rows="5" name="chest_text"><?=$chest_text?></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group well">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4>Abdomen</h4>
+                                        </div>
+                                        <div class="radio">
+                                            <div class="col-md-1">
+                                                <label>
+                                                    <input type="radio" name="abdomen_status"  id="abdomen_status" onchange="peCheckboxFunction()" value="1">
+                                                    Normal
+                                                </label>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <label>
+                                                    <input type="radio" name="abdomen_status" id="abdomen_status" onchange="peCheckboxFunction()" value="2">
+                                                    Abnormal
+                                                </label>
+                                            </div>
+                                            <?php
+													if(isset($abdomen_status))
+													{
+												?>
+                                            <script type="text/javascript">
+                                                $("input[id=abdomen_status][value=<?=$abdomen_status?>]").prop('checked', true);
+                                            </script>
+                                            <?php
+													}
+												?>
+                                        </div>
+                                    </div>
+                                    <div class="row pe-hidden-content" id="textarea-abdomen">
+                                        <div class="col-md-5">
+                                            <?php
+													if(!isset($abdomen_text))
+													{
+														$abdomen_text = "";
+													}
+												?>
+                                            <textarea class="form-control" rows="5" name="abdomen_text"><?=$abdomen_text?></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group well">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4>Neurological examination</h4>
+                                        </div>
+                                        <div class="radio">
+                                            <div class="col-md-1">
+                                                <label>
+                                                    <input type="radio" name="neurological_status" id="neurological_status" onchange="peCheckboxFunction()" value="1">
+                                                    Normal
+                                                </label>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <label>
+                                                    <input type="radio" name="neurological_status" id="neurological_status" onchange="peCheckboxFunction()" value="2">
+                                                    Abnormal
+                                                </label>
+                                            </div>
+                                            <?php
+													if(isset($neurological_status))
+													{
+												?>
+                                            <script type="text/javascript">
+                                                $("input[id=neurological_status][value=<?=$neurological_status?>]").prop('checked', true);
+                                            </script>
+                                            <?php
+													}
+												?>
+                                        </div>
+                                    </div>
+                                    <div class="row pe-hidden-content" id="textarea-neurological">
+                                        <div class="col-md-5">
+                                            <?php
+													if(!isset($neurological_text))
+													{
+														$neurological_text = "";
+													}
+												?>
+                                            <textarea class="form-control" rows="8" name="neurological_text"><?=$neurological_text?></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script type="text/javascript">
+                                    function peCheckboxFunction() {
+                                        if ($('input[name=heent_status]:checked').val() == 2)
+                                        {
+                                            $('#textarea-heent').slideDown('slow');
+                                        }
+                                        else
+                                        {
+                                            $('#textarea-heent').slideUp('slow');
+                                        }
+
+                                        if ($('input[name=cvs_status]:checked').val() == 2)
+                                        {
+                                            $('#textarea-cvs').slideDown('slow');
+                                        }
+                                        else
+                                        {
+                                            $('#textarea-cvs').slideUp('slow');
+                                        }
+
+                                        if ($('input[name=chest_status]:checked').val() == 2)
+                                        {
+                                            $('#textarea-chest').slideDown('slow');
+                                        }
+                                        else
+                                        {
+                                            $('#textarea-chest').slideUp('slow');
+                                        }
+
+                                        if ($('input[name=abdomen_status]:checked').val() == 2)
+                                        {
+                                            $('#textarea-abdomen').slideDown('slow');
+                                        }
+                                        else
+                                        {
+                                            $('#textarea-abdomen').slideUp('slow');
+                                        }
+
+                                        if ($('input[name=neurological_status]:checked').val() == 2)
+                                        {
+                                            $('#textarea-neurological').slideDown('slow');
+                                        }
+                                        else
+                                        {
+                                            $('#textarea-neurological').slideUp('slow');
+                                        }
+                                    }
+                                    peCheckboxFunction();
+                                </script>
+
+                                <!-- wPaint -->
+                                @include("wpaint")
+                                <?php
+											if(isset($image))
+											{
+												if($image != NULL && $image != "")
+												{
+										?>
+                                <img src="{{ url('assets/img/treatment_pic') }}/<?=$image?>" class="img-thumbnail img-responsive">
+                                <?php
+												}
+								      		}
+								      	?>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="funkyradio">
+                                            <div class="funkyradio-info">
+                                                <input type="checkbox" id="checkbox-wPaint" onClick="$('#wPaint').toggle(500);$('#wPaint-save').slideToggle();"/>
+                                                <label for="checkbox-wPaint">Draw</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-11 col-md-offset-0">
+                                        <button type="button" id="wPaint-save" class="btn btn-success btn-lg  btn-block" style="display: none;" onclick="">
+                                            <span class="fa fa-upload"></span>
+                                        </button>
+                                    </div> -->
+                                </div>
+                                <div id="wPaint" class="wPaint-warp"></div>
+                                <center id="wPaint-img"></center>
+
+
+                                <script type="text/javascript">
+                                    var images = ['/test/uploads/wPaint.png',];
+                                    function saveImg(image) {
+                                        var picture_name = "<?=$picture_name?>";
+                                        var _this = this;
+
+                                        $("#picture_name").val(picture_name+".png");
+
+                                        $('#is_draw').val("1");
+
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: '{{ url("assets/plugin/wPaint/upload.php") }}',
+                                            data: {image: image, picture_name: picture_name},
+                                            success: function (resp) {
+                                                // internal function for displaying status messages in the canvas
+                                                _this._displayStatus('Image saved successfully');
+
+                                                // doesn't have to be json, can be anything
+                                                // returned from server after upload as long
+                                                // as it contains the path to the image url
+                                                // or a base64 encoded png, either will work
+                                                resp = $.parseJSON(resp);
+
+                                                // update images array / object or whatever
+                                                // is being used to keep track of the images
+                                                // can store path or base64 here (but path is better since it's much smaller)
+                                                images.push(resp.img);
+
+                                                // do something with the image
+                                                $('#wPaint-img').attr('src', image);
+                                            }
+                                        });
+                                    }
+
+                                    function loadImgBg () {
+
+                                        // internal function for displaying background images modal
+                                        // where images is an array of images (base64 or url path)
+                                        // NOTE: that if you can't see the bg image changing it's probably
+                                        // becasue the foregroud image is not transparent.
+                                        this._showFileModal('bg', images);
+                                    }
+
+                                    function loadImgFg () {
+
+                                        // internal function for displaying foreground images modal
+                                        // where images is an array of images (base64 or url path)
+                                        this._showFileModal('fg', images);
+                                    }
+
+                                    // init wPaint
+                                    $('#wPaint').wPaint({
+                                        menuOrientation : 'vertical', //can use 'vertical' and 'horizontal'
+                                        menuOffsetLeft: 5,
+                                        menuOffsetTop: 5,
+                                        saveImg: saveImg,
+                                        loadImgBg: loadImgBg,
+                                        loadImgFg: loadImgFg,
+                                        menuHandle: false,
+                                        strokeStyle: '#000000',
+                                        fillStyle:   '#000000',
+                                        fontSize: '30',
+                                        bg: '#B7B7B7',
+                                        path: '{{ url("assets/plugin/wPaint") }}/'
+
+                                    });
+                                </script>
+                                <!-- end wPaint -->
+                            </div><hr>
+                            <script type="text/javascript">
+                                $('#wPaint').hide();
+                            </script>
+
+                            <div class="great">Pain score</div>
+                            <div class="form-group">
+                                <select class="form-control input-pain_score" name="pain_score" id="pain_score">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
+                                <?php
+										if(isset($pain_score))
+										{
+									?>
+                                <script type="text/javascript">
+                                    $("#pain_score").val(<?=$pain_score?>);
+                                </script>
+                                <?php
+										}
+									?>
+                            </div><hr>
+
+                            <div class="great">Impression / Diagnosis</div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <?php
+												if(!isset($diagnosis))
+												{
+													$diagnosis = "";
+												}
+											?>
+                                        <textarea class="form-control" rows="5" name="diagnosis"><?=$diagnosis?></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- icd code map	 -->
+                                <label style="margin-top: 20px;">ICD code map</label>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="select2" name="icd_code_map">
+                                            <?php
+									      		foreach ($icd_code_map_array as $icd_code_map_item) {
+									      		?>
+                                            <option value="<?=$icd_code_map_item[0]?>">
+                                                <?=$icd_code_map_item[2]?> <?=$icd_code_map_item[1]?>
+                                            </option>
+                                            <?php } ?>
+                                        </select>
+                                        <?php
+									      		if(isset($icd_code_map))
+									      		{
+									      	?>
+                                        <script type="text/javascript">
+                                            $("#select2").val(<?=$icd_code_map?>);
+                                        </script>
+                                        <?php
+									      		}
+									      	?>
+                                    </div>
+                                </div>
+                                <!-- end icd code map	 -->
+
+                            </div><hr>
+
+                            <!-- treatments -->
+                            <div class="great">Treatments</div>
+                            <h4>Medication</h4>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <?php
+												if(!isset($medication))
+												{
+													$medication = "";
+												}
+											?>
+                                        <textarea class="form-control" rows="5" name="medication"><?=$medication?></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h4>Procedure</h4>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <?php
+												if(!isset($procedures))
+												{
+													$procedures = "";
+												}
+											?>
+                                        <textarea class="form-control" rows="5" name="procedure"><?=$procedures?></textarea>
+                                    </div>
+                                </div>
+                            </div><hr>
+                            <!-- end treatments -->
+
+                            <!-- dispensation -->
+                            <div class="great">Dispensation</div>
+                            <div class="form-group">
+                                <!-- allery modal -->
+                                <div class="modal modal-allergy fade" id="modal-allergy" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                <h2 class="modal-title text-center" id="lineModalLabel">Allergy</h2>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="panel panel-default" style="margin-bottom: 0px;">
+                                                            <div class="panel-body">
+                                                                <?=$allergy?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                                    <div class="btn-group" role="group">
+                                                        <button  type="button" class="btn btn-danger btn-hover-green" data-dismiss="modal" role="button" >Done</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end allery modal -->
+
+                                <?php
+							    		for ($i = 1 ; $i <= 20 ; $i++)
+							    		{
+							    	?>
+                                <input type="hidden" id="select_drug_array<?=$i?>" name="select_drug_array[<?=$i?>]" value="1">
+                                <div class="select-drug-<?=$i?> select-drug" style="display:none;">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="col-md-12">
+                                                <label for="">Trade name</label>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <select style="width: 100%;" class="form-control" id="select2-trade_name<?=$i?>" onchange="changeTradename(<?=$i?>)">
+                                                    <option name="please-select" value="">-- Please select --</option>
+                                                    <?php
+															foreach ($drug_array_trade_name as $trade_name)
+															{
+														?>
+                                                    <option value='<?=$trade_name?>'><?=$trade_name?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="col-md-12">
+                                                <label for="">Generic name</label>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <select style="width: 100%;" class="form-control" id="select2-drug<?=$i?>" onchange="changeDrug(<?=$i?>)" name="drug_cart_array[<?=$i?>][id]">
+                                                    <option name="please-select" value="">-- Please select --</option>
+                                                    <?php
+															foreach ($drug_array as $drug_data)
+															{
+														?>
+                                                    <option name="<?=$drug_data["trade_name"]?>" value=<?=$drug_data["id"]?>><?=$drug_data["generic_eng"]?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="">amount</label>
+                                            <input type="number" class="form-control input-sm" id="drug-amount<?=$i?>" value="0" min="0" name="drug_cart_array[<?=$i?>][amount]">
+                                        </div>
+                                        <div class="col-md-1" style="margin: auto;">
+                                            <a onclick="$('.custom-content<?=$i?>').slideToggle('slow')" class="btn btn-primary btn-custom btn-sm">custom</a>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <label for=""></label>
+                                            <div class="checkbox checkboxnew checkboxnew-success">
+                                                <input id="drug-checkbox<?=$i?>" type="checkbox" onclick="checkbox_drug(<?=$i?>)" checked>
+                                                <label for="drug-checkbox<?=$i?>">
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="custom-content<?=$i?>" style="display: none;">
+                                                <div class="col-md-12">
+                                                    <div class="well" style="margin-top: 10px;">
+                                                        <div class="row">
+                                                            <div class = "col-md-6">
+                                                                <div class = "row customin<?=$i?> customin-eat<?=$i?> customin-drops<?=$i?>">
+                                                                    <div class="form-group">
+                                                                        <div class = "col-md-4" id = "mylabel">
+																				<span  class="customin<?=$i?> customin-eat<?=$i?>">
+																					<label>รับประทานครั้งละ(เม็ด)</label>
+																				</span>
+                                                                            <span  class="customin<?=$i?> customin-drops<?=$i?>">
+																					<label>หยอดตา</label>
+																				</span>
+                                                                        </div>
+                                                                        <div class = "col-md-8 customin<?=$i?> customin-drops<?=$i?>">
+                                                                            <div class="checkbox">
+                                                                                <label>
+                                                                                    <input type="checkbox" id="drug_drops_left<?=$i?>" onchange="drugDropsChange(<?=$i?>)">
+                                                                                    ซ้าย
+                                                                                </label>
+                                                                            </div>
+                                                                            <div class="checkbox">
+                                                                                <label>
+                                                                                    <input type="checkbox" id="drug_drops_right<?=$i?>" onchange="drugDropsChange(<?=$i?>)">
+                                                                                    ขวา
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class = "col-md-8 customin<?=$i?> customin-eat<?=$i?>">
+                                                                            <input type="text" class="form-control" id="drug<?=$i?>_use_position" name="drug_cart_array[<?=$i?>][use_position]" min = "0">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+                                                                <div class = "row customin<?=$i?> customin-eat<?=$i?> customin-massage<?=$i?> customin-squirt<?=$i?> customin-unguent<?=$i?> customin-drops<?=$i?>">
+                                                                    <div class="form-group">
+                                                                        <div class = "col-md-4" id = "mylabel">
+																				<span  class="customin<?=$i?> customin-eat<?=$i?> customin-massage<?=$i?> customin-squirt<?=$i?> customin-unguent<?=$i?>">
+																					<label >วันละ(ครั้ง)</label>
+																				</span>
+                                                                            <span  class="customin<?=$i?> customin-drops<?=$i?>">
+																					<label >ครั้งละ(หยด)</label>
+																				</span>
+                                                                        </div>
+                                                                        <div class = "col-md-8">
+                                                                            <input type="text" class="form-control" id="drug<?=$i?>_eatperday_time" name="drug_cart_array[<?=$i?>][eatperday_time]">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+                                                                <div class = "row customin<?=$i?> customin-eat<?=$i?> customin-drops<?=$i?>">
+                                                                    <div class="form-group">
+                                                                        <div class = "col-md-4" id = "mylabel">
+                                                                            <label >ทุก(ชั่วโมง)</label>
+                                                                        </div>
+                                                                        <div class = "col-md-8">
+                                                                            <input type="text" class="form-control" id="drug<?=$i?>_every_hour" name="drug_cart_array[<?=$i?>][every_hour]">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+                                                                <div class = "row customin<?=$i?> customin-eat<?=$i?> customin-massage<?=$i?> customin-squirt<?=$i?> customin-unguent<?=$i?> customin-drops<?=$i?>">
+                                                                    <div class="form-group">
+                                                                        <div class = "col-md-4" id = "mylabel">
+                                                                            <label >หมายเหตุ</label>
+                                                                        </div>
+                                                                        <div class = "col-md-8">
+                                                                            <input type="text" class="form-control" id="drug<?=$i?>_note" name="drug_cart_array[<?=$i?>][note]" min="0">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class = "row customin<?=$i?> customin-eat<?=$i?> customin-massage<?=$i?> customin-squirt<?=$i?> customin-unguent<?=$i?> customin-drops<?=$i?>">
+                                                                    <div class="form-group">
+                                                                        <div class = "col-md-4" id = "mylabel">
+
+                                                                        </div>
+                                                                        <div class = "col-md-8">
+                                                                            <label style="margin-top: 16px;">
+                                                                                <input type="checkbox" id="drug<?=$i?>_lang" name="drug_cart_array[<?=$i?>][lang]" value="1"> ภาษาอังกฤษ
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class = "row customin<?=$i?> customin-eat<?=$i?> customin-massage<?=$i?> customin-squirt<?=$i?> customin-unguent<?=$i?> customin-drops<?=$i?>">
+                                                                    <div class="form-group">
+                                                                        <div class = "col-md-4" id = "mylabel">
+                                                                            <label >Indicate</label>
+                                                                        </div>
+                                                                        <div class = "col-md-8">
+                                                                            <input type="text" class="form-control" id="drug<?=$i?>_benefit" name="drug_cart_array[<?=$i?>][benefit]" min="0">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class = "col-md-6">
+                                                                <div class = "row customin<?=$i?> customin-eat<?=$i?>">
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-4" id = "mylabel">
+                                                                            <label>รับประทานช่วง</label>
+                                                                        </div>
+                                                                        <div class="col-md-8" onclick = "except_detail();">
+                                                                            <div class="radio">
+                                                                                <label>
+                                                                                    <input type="radio" value="before_meal" id="drug<?=$i?>_eat_time_meal" name="drug_cart_array[<?=$i?>][eat_time_meal]">
+                                                                                    ก่อนอาหาร
+                                                                                </label>
+                                                                            </div>
+                                                                            <div class="radio">
+                                                                                <label>
+                                                                                    <input type="radio" value="after_meal" id="drug<?=$i?>_eat_time_meal" name="drug_cart_array[<?=$i?>][eat_time_meal]">
+                                                                                    หลังอาหาร
+                                                                                </label>
+                                                                            </div>
+                                                                            <div class="radio">
+                                                                                <label>
+                                                                                    <input type="radio" value="except" id="drug<?=$i?>_eat_time_meal" name="drug_cart_array[<?=$i?>][eat_time_meal]">
+                                                                                    เฉพาะเวลา
+                                                                                </label>
+                                                                            </div>
+                                                                            <input type="text" class="form-control" id="drug<?=$i?>_except" name="drug_cart_array[<?=$i?>][except]" id = "except">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+                                                                <div class = "row  customin<?=$i?> customin-eat<?=$i?> customin-massage<?=$i?> customin-squirt<?=$i?> customin-unguent<?=$i?> customin-drops<?=$i?>">
+                                                                    <div class="form-group">
+                                                                        <div class = "col-md-4" id = "mylabel">
+                                                                            <label for="">เวลา</label>
+                                                                        </div>
+                                                                        <div class = "col-md-8">
+                                                                            <div class="checkbox">
+                                                                                <label>
+                                                                                    <input type="checkbox" id="drug<?=$i?>_eat_time_morning" name="drug_cart_array[<?=$i?>][eat_time_morning]" value="1"> เช้า
+                                                                                </label>
+                                                                            </div>
+                                                                            <div class="checkbox">
+                                                                                <label>
+                                                                                    <input type="checkbox" id="drug<?=$i?>_eat_time_noon" name="drug_cart_array[<?=$i?>][eat_time_noon]" value="1"> กลางวัน
+                                                                                </label>
+                                                                            </div>
+                                                                            <div class="checkbox">
+                                                                                <label>
+                                                                                    <input type="checkbox" id="drug<?=$i?>_eat_time_evening" name="drug_cart_array[<?=$i?>][eat_time_evening]" value="1"> เย็น
+                                                                                </label>
+                                                                            </div>
+                                                                            <div class="checkbox">
+                                                                                <label>
+                                                                                    <input type="checkbox" id="drug<?=$i?>_eat_time_before_sleep" name="drug_cart_array[<?=$i?>][eat_time_before_sleep]" value="1"> ก่อนนอน
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <?php
+								    if(isset($_POST['treatment_record_id']))// Edit examination
+									{
+									?>
+                                <!-- drug remedDOING -->
+                                <script type="text/javascript">
+                                    $("[class*='customin']").hide();
+                                    <?php
+                                        $json_remed_drug_array = json_encode($remed_drug_array);
+                                    echo "var remed_drug_array = $json_remed_drug_array;";
+                                    $json_drug_array = json_encode($drug_array);
+                                    echo "var drug_array = $json_drug_array;";
+                                        ?>
+
+                                    $("[class*='customin']").hide();
+
+                                    $("#amount_drug").val(<?=$remed_drug_amount?>);
+                                    for (i = 1 ; i <= <?=$remed_drug_amount?> ; i++)
+                                    {
+                                        $('#drug-amount'+i).val(remed_drug_array[i]['amount']);
+                                        $('#select2-drug'+i).val(remed_drug_array[i]['id']);
+
+                                        $temp = 'div.select-drug-'+i;
+                                        $($temp).show(500);
+
+                                        var remed_drug_type = drug_array[remed_drug_array[i]['id']]["type"];
+                                        $(".customin-"+remed_drug_type+i).show();
+                                        if (remed_drug_type == "drops")
+                                        {
+                                            if (remed_drug_array[i]['use_position'] == "lefteye")
+                                            {
+                                                $("#drug_drops_left"+i).prop('checked', true);
+                                                $("#drug_drops_right"+i).prop('checked', false);
+                                            }
+                                            else if (remed_drug_array[i]['use_position'] == "righteye")
+                                            {
+                                                $("#drug_drops_left"+i).prop('checked', false);
+                                                $("#drug_drops_right"+i).prop('checked', true);
+                                            }
+                                            else
+                                            {
+                                                $("#drug_drops_left"+i).prop('checked', true);
+                                                $("#drug_drops_right"+i).prop('checked', true);
+                                            }
+                                        }
+
+                                        $('#drug'+i+'_use_position').val(remed_drug_array[i]['use_position']);
+                                        $('#drug'+i+'_eatperday_time').val(remed_drug_array[i]['eatperday_time']);
+                                        $('#drug'+i+'_every_hour').val(remed_drug_array[i]['every_hour']);
+                                        $('#drug'+i+'_note').val(remed_drug_array[i]['note']);
+                                        $('#select2-trade_name'+i).val(drug_array[remed_drug_array[i]['id']]['trade_name']);
+                                        $('#select2-select2-trade_name'+i+'-container').text(drug_array[remed_drug_array[i]['id']]['trade_name']);
+
+                                        // label remed
+                                        $("#remed-genericname"+i).val(drug_array[remed_drug_array[i]['id']]['generic_eng']);
+                                        $("#remed-tradename"+i).val(drug_array[remed_drug_array[i]['id']]['trade_name']);
+
+                                        if (remed_drug_array[i]['eat_time_meal'] == "before_meal")
+                                            $("input[id=drug"+i+"_eat_time_meal][value='before_meal']").prop('checked', true);
+                                        else if (remed_drug_array[i]['eat_time_meal'] == "after_meal")
+                                            $("input[id=drug"+i+"_eat_time_meal][value='after_meal']").prop('checked', true);
+                                        else
+                                        {
+                                            $("input[id=drug"+i+"_eat_time_meal][value='except']").prop('checked', true);
+                                            $('#drug'+i+'_except').val(remed_drug_array[i]['eat_time_meal']);
+                                        }
+
+                                        if (remed_drug_array[i]['eat_time_morning'] == 1)
+                                            $('#drug'+i+'_eat_time_morning').prop('checked', true);
+                                        else
+                                            $('#drug'+i+'_eat_time_morning').prop('checked', false);
+
+                                        if (remed_drug_array[i]['eat_time_noon'] == 1)
+                                            $('#drug'+i+'_eat_time_noon').prop('checked', true);
+                                        else
+                                            $('#drug'+i+'_eat_time_noon').prop('checked', false);
+
+                                        if (remed_drug_array[i]['eat_time_evening'] == 1)
+                                            $('#drug'+i+'_eat_time_evening').prop('checked', true);
+                                        else
+                                            $('#drug'+i+'_eat_time_evening').prop('checked', false);
+
+                                        if (remed_drug_array[i]['eat_time_before_sleep'] == 1)
+                                            $('#drug'+i+'_eat_time_before_sleep').prop('checked', true);
+                                        else
+                                            $('#drug'+i+'_eat_time_before_sleep').prop('checked', false);
+                                    }
+                                </script>
+                                <!-- end drug remed -->
+                                <?php } ?>
+
+                                <?php
+								    	}
+								    ?>
+                                <div class="col-md-12" style="margin-top: 10px;">
+                                    <a role="button" id="plus-amount-drug" onclick="plus_amount_drug()"><i class="fa fa-plus-circle fa-3x"></i></a>
+                                    <a role="button" id="minus-amount-drug" onclick="minus_amount_drug()" style="display: none;"><i class="fa fa-minus-circle fa-3x"></i></a>
+                                    <a class="btn btn-info" onclick="$('.tab-header[href=#history]').click(); $('html,body').animate({ scrollTop: 0 }, 300);" style="margin-top: -20px;">Select from history</a>
+                                    <input type="hidden" name="amount_drug" id="amount_drug" value="0">
+                                </div>
+                            </div><hr><hr>
+                            <!-- end dispensation -->
+
+                            <div class="great">Appointment</div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="funkyradio">
+                                        <div class="funkyradio-info">
+                                            <input type="checkbox" name="checkbox_appointment" id="checkbox-appointment" onClick="$('#appointment-content').slideToggle(500);"/>
+                                            <label for="checkbox-appointment">Appoint</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php
+										if(isset($appointment_create_at) && $appointment_create_at != NULL)
+										{
+											?>
+                                <script type="text/javascript">
+                                    $('#checkbox-appointment').prop('checked', true);
+                                </script>
+                                <?php
+										}
+									?>
+                                <!-- <div class="col-md-11 col-md-offset-0">
+                                    <button type="button" id="wPaint-save" class="btn btn-success btn-lg  btn-block" style="display: none;" onclick="">
+                                        <span class="fa fa-upload"></span>
+                                    </button>
+                                </div> -->
+                            </div>
+
+                            <?php
+									if(isset($appointment_create_at) && $appointment_create_at != NULL)
+									{
+										$display = "inline-block";
+									}
+									else
+									{
+										$display = "none";
+									}
+								?>
+                            <div class="form-group" id="appointment-content" style="display:<?=$display?>;">
+                                <div class="well">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label style="margin-top: 20px;">Date</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label style="margin-top: 20px;">Time To Start</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label style="margin-top: 20px;">Time To End</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <?php
+													if(isset($appointment_create_at) && $appointment_create_at != NULL)
+													{
+												?>
+                                        <div class="col-md-3">
+                                            <input style="background-color:white;" type="text" name="appointment_date" id="appointment_date" class="form-control" value="<?=date('d/m/Y', strtotime($appointment_date))?>">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="text" name="appointment_time_start" class="form-control timepicker" value="<?=substr($appointment_time_start, 0, 5)?>">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="text" name="appointment_time_end" class="form-control timepicker" value="<?=substr($appointment_time_end, 0, 5)?>">
+                                        </div>
+
+                                        <?php
+													}
+													else
+													{
+												?>
+                                        <div class="col-md-3">
+                                            <input style="background-color:white;" type="text" name="appointment_date" id="appointment_date" class="form-control" value="<?=date('d/m/Y', strtotime('+543 years'))?>">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="text" name="appointment_time_start" class="form-control timepicker">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="text" name="appointment_time_end" class="form-control timepicker">
+                                        </div>
+                                        <?php
+													}
+												?>
+
+
+
+                                    </div>
+
+                                    <label style="margin-top: 20px;">note</label>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <?php
+													if(!isset($appointment_note))
+													{
+														$appointment_note = "";
+													}
+												?>
+                                            <textarea class="form-control" rows="5" name="appointment_note"><?=$appointment_note?></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><hr>
+
+                            <input type="hidden" name="patient_code" class="form-control" value="<?=$patient_code?>">
+                            <input type="hidden" name="patient_id" class="form-control" value="<?=$patient_id?>">
+                            <input type="hidden" name="temperature" class="form-control" value="<?=$temperature?>">
+                            <input type="hidden" name="pressure_1" class="form-control" value="<?=$pressure_1?>">
+                            <input type="hidden" name="pressure_2" class="form-control" value="<?=$pressure_2?>">
+                            <input type="hidden" name="weight" class="form-control" value="<?=$weight?>">
+                            <input type="hidden" name="height" class="form-control" value="<?=$height?>">
+                            <input type="hidden" name="respiratory" class="form-control" value="<?=$respiratory?>">
+                            <input type="hidden" name="heart" class="form-control" value="<?=$heart?>">
+                            <?php
+									if(isset($image))
+									{
+										$pictureName = $image;
+										$isDaw = 1;
+									}
+									else
+									{
+										$pictureName = $picture_name.".png";
+										$isDaw = 0;
+									}
+								?>
+                            <input type="hidden" name="picture_name" id="picture_name" class="form-control" value="<?=$pictureName?>">
+                            <input type="hidden" name="is_draw" id="is_draw" class="form-control" value="<?=$isDaw?>">
+                            <input type="hidden" name="queue_id" id="queue_id" class="form-control" value="<?=$queue_id?>">
+                            <button type="submit" class=" btn btn-block btn-lg btn-success" onclick="return confirm('อย่าลืมกดบันทึกรูปถ้ามีการวาด\nหากเรียบร้อยแล้วกดปุ่มตกลง');">DONE</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- information -->
+        <div id="information" class="tab-pane fade">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="jumbotron">
+                        <div class="great">General Information</div>
+                        <div class="well">
+                            <div class = "row" style="padding-bottom: 30px;">
+                                <div class = "col-md-4 col-md-offset-4">
+                                    <center><i class="fa fa-user fa-5x" style = "color:#0E5589"></i></center>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "col-md-6" id = "mylabel">
+                                    <label>Name : </label>
+                                </div>
+                                <div class = "col-md-6">
+                                    <?=$name?>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "col-md-6" id = "mylabel">
+                                    <label>Age : </label>
+                                </div>
+                                <div class = "col-md-6">
+                                    <?=$age?>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "col-md-6" id = "mylabel">
+                                    <label>Gender : </label>
+                                </div>
+                                <div class = "col-md-6">
+                                    <?=$gender?>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "col-md-6" id = "mylabel">
+                                    <label>Allergy : </label>
+                                </div>
+                                <div class = "col-md-6">
+                                    <?=$allergy?>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "col-md-6" id = "mylabel">
+                                    <label>Comorbid disease : </label>
+                                </div>
+                                <div class = "col-md-6">
+                                    <?=$comorbid_disease?>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "col-md-6" id = "mylabel">
+                                    <label>Social security insurance : </label>
+                                </div>
+                                <div class = "col-md-6">
+                                    <?=$social_insurance?>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "col-md-6" id = "mylabel">
+                                    <label>Nationality : </label>
+                                </div>
+                                <div class = "col-md-6">
+                                    <?=$nationality?>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "col-md-6" id = "mylabel">
+                                    <label>Passport ID : </label>
+                                </div>
+                                <div class = "col-md-6">
+                                    <?=$passport_id?>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "col-md-6" id = "mylabel">
+                                    <label>Identification number : </label>
+                                </div>
+                                <div class = "col-md-6">
+                                    <?=$identification_number?>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "col-md-6" id = "mylabel">
+                                    <label>Birthdate : </label>
+                                </div>
+                                <div class = "col-md-6">
+                                    <?=$birthdate?>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "col-md-6" id = "mylabel">
+                                    <label>Telephone number : </label>
+                                </div>
+                                <div class = "col-md-6">
+                                    <?=$telephone_number?>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "col-md-6" id = "mylabel">
+                                    <label>Province : </label>
+                                </div>
+                                <div class = "col-md-6">
+                                    <?=$province?>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class = "col-md-6" id = "mylabel">
+                                    <label>Address : </label>
+                                </div>
+                                <div class = "col-md-6">
+                                    <?=$address?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- history -->
+        <div id="history" class="tab-pane fade">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="jumbotron"><div class="great" style="margin-bottom: 0px;">History</div>
+                        </section> <!-- cd-timeline -->
+
+                        <section id="cd-timeline" class="cd-container" style="margin-top: 0px;">
+                            <?php
+							//variable for treatment history
+								$sql = "SELECT * FROM treatments WHERE patient_code = $queue->patient_code ORDER BY created_at DESC";
+                            $result = $conn->query($sql);
+                            $num_rows = $result->num_rows;
+                            $count = 0;
+
+                            //function to change heent_text... to show only
+                            function _text($status, $text)
+                            {
+                            if($status == 0)
+                            $text = "Not select";
+                            else if($status == 1)
+                            $text = "Normal";
+                            else
+                            $text = "Abnormal(".$text.")";
+                            return $text;
+                            }
+                            //end function
+
+                            while($row = $result->fetch_assoc())
+                            {
+                            $treatment_record_id 	= $row["id"];
+                            $temperature 			= $row["temperature"];
+                            $pressure1 				= $row["pressure_1"];
+                            $pressure2	 			= $row["pressure_2"];
+                            $pressure 				= $pressure1.'/'.$pressure2;
+                            $weight 				= $row["weight"];
+                            $height 				= $row["height"];
+                            $respiratory 			= $row["respiratory"];
+                            $heart 					= $row["heart"];
+                            $pain_score 			= $row["pain_score"];
+                            $chief_complaint 		= $row["chief_complaint"];
+                            $present_illness 		= $row["present_illness"];
+                            $diagnosis 				= $row["diagnosis"];
+
+                            $icd_code_map 			= $row["icd_code_map"];
+                            $sql = "SELECT * FROM icd_codemaps WHERE id = $icd_code_map";
+                            $answer = $conn->query($sql);
+                            $line = $answer->fetch_assoc();
+                            $icd_code = $line["icd_code"];
+                            $meaning = $line["meaning"];
+
+                            $medication 			= $row["medication"];
+                            $procedures 			= $row["procedures"];
+                            $general_appearance 	= $row["general_appearance"];
+
+                            $heent_status 			= $row["heent_status"];
+                            $heent_text 			= $row["heent_text"];
+                            $heent_text				= _text($heent_status, $heent_text);
+
+                            $cvs_status 			= $row["cvs_status"];
+                            $cvs_text 				= $row["cvs_text"];
+                            $cvs_text				= _text($cvs_status, $cvs_text);
+
+                            $chest_status 			= $row["chest_status"];
+                            $chest_text 			= $row["chest_text"];
+                            $chest_text				= _text($chest_status, $chest_text);
+
+                            $abdomen_status 		= $row["abdomen_status"];
+                            $abdomen_text 			= $row["abdomen_text"];
+                            $abdomen_text			= _text($abdomen_status, $abdomen_text);
+
+                            $neurological_status 	= $row["neurological_status"];
+                            $neurological_text 		= $row["neurological_text"];
+                            $neurological_text		= _text($neurological_status, $neurological_text);
+
+                            $image 					= $row["image"];
+                            $price 					= $row["price"];
+                            $date_time 				= $row["created_at"];
+                            $current_modify 		= $row["updated_at"];
+                            $patient_id 			= $row["patient_code"];
+
+                            $sql = "SELECT * FROM patients where id = $patient_id";
+                            $answer = $conn->query($sql);
+                            $line = $answer->fetch_assoc();
+
+                            $firstname = $line["firstname"];
+                            $lastname = $line["lastname"];
+                            $comorbid_disease = $line["comorbid_disease"];
+                            $allergy = $line["allergy"];
+
+                            $fullDetail = true;
+                            if ($chief_complaint == 'ซื้อยา')
+                            {
+                            $fullDetail = false;
+                            }
+
+                            if($count == 0)
+                            $title = "การรักษาครั้งล่าสุด";
+                            else
+                            $title = "การรักษาครั้งที่ ".$num_rows;
+
+                            //$title = $title." &nbsp;&nbsp;(".$date_time.")";
+
+                            $count++;
+                            $num_rows--;
+                            ?>
+
+                            <div class="cd-timeline-block">
+                                <div class="cd-timeline-img cd-picture">
+                                    <center><h3 style="color:white; margin-top:8px"><?=$num_rows+1?></h3></center>
+                                </div> <!-- cd-timeline-img -->
+
+                                <div class="cd-timeline-content" onclick = "toggle_detail('<?=$count?>')" style = "cursor:pointer;">
+                                    <!--<h2><?=$title?></h2>-->
+                                    <b>อาการสำคัญ : </b><?=$chief_complaint?><br>
+                                    <span <?php echo $fullDetail ? "" : "style='display:none'" ?>>
+                                    <b>ประวัติปัจจุบัน : </b><?=$present_illness?><br>
+                                    </span>
+                                    <div class = "detail<?=$count?>" style = "display : none" >
+                                        <table class="table table-striped table-hover" <?php echo $fullDetail ? "" : "style='display:none'" ?>>
+                                        <thead>
+                                        <tr>
+                                            <!-- Body Temperature -->
+                                            <th>BT<detail> (°C)</detail></th>
+                                            <!-- Blood pressure -->
+                                            <th>BP<detail> (mmHg)</detail></th>
+                                            <!-- Heart rate -->
+                                            <th>HR<detail> (per min)</detail></th>
+                                            <!-- Respiratory rate -->
+                                            <th>RR<detail> (per min)</detail></th>
+                                            <!-- Weight -->
+                                            <th>BW<detail> (kg)</detail></th>
+                                            <!-- Height -->
+                                            <th>Ht<detail> (cm)</detail></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><?=$temperature?></td>
+                                            <td><?=$pressure?></td>
+                                            <td><?=$heart?></td>
+                                            <td><?=$respiratory?></td>
+                                            <td><?=$height?></td>
+                                            <td><?=$weight?></td>
+                                        </tr>
+                                        </tbody>
+                                        </table>
+                                        <table class="table table-hover">
+                                            <tbody>
+                                            <?php if ($fullDetail) { ?>
+                                            <tr>
+                                                <th>Chief Complaint</th>
+                                                <td><?=$chief_complaint?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Present illness</th>
+                                                <td><?=$present_illness?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Pass history / Comorbid disease</th>
+                                                <td><?=nl2br($comorbid_disease)?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>ICD code map</th>
+                                                <td><?=$icd_code?> <?=$meaning?></td>
+                                            </tr>
+                                            <!-- <tr>
+                                                <th>Allergy</th>
+                                                <td><?=$allergy?></td>
+                                            </tr> -->
+                                            <tr>
+                                                <th>General appearance</th>
+                                                <td><?=$general_appearance?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>HEENT</th>
+                                                <td><?=$heent_text?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>CVS.</th>
+                                                <td><?=$cvs_text?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Chest</th>
+                                                <td><?=$chest_text?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Abdomen</th>
+                                                <td><?=$abdomen_text?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Neurological examination</th>
+                                                <td><?=$neurological_text?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Pain score</th>
+                                                <td><?=$pain_score?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Impression / Diagnosis</th>
+                                                <td><?=$diagnosis?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Medication</th>
+                                                <td><?=$medication?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Procedure</th>
+                                                <td><?=$procedures?></td>
+                                            </tr>
+                                            <?php if ($image != "") { ?>
+                                            <tr>
+                                                <th>Image</th>
+                                                <td>
+                                                    <img src="{{ url('assets/img/treatment_pic') }}/<?=$image?>" class="img-thumbnail img-responsive" id="img-record">
+                                                </td>
+                                            </tr>
+                                            <?php } ?>
+                                            <?php } ?>
+                                            <?php
+															$sql = "SELECT * FROM dispensations WHERE treatment_id = $treatment_record_id";
+															$result_dispensation = $conn->query($sql);
+                                            $count_dispensation = $result_dispensation->num_rows;
+                                            $i = 0;
+
+                                            while($row_dispensation = $result_dispensation->fetch_assoc())
+                                            {
+                                            $history_drug_array[$treatment_record_id][$i] = array(
+                                            "id" => $row_dispensation['drug_id'],
+                                            "use_position" => $row_dispensation['use_position'],
+                                            "eatperday_time" => $row_dispensation['eatperday_time'],
+                                            "every_hour" => $row_dispensation['every_hour'],
+                                            "eat_time_meal" => $row_dispensation['eat_time_meal'],
+                                            "eat_time_morning" => $row_dispensation['eat_time_morning'],
+                                            "eat_time_noon" => $row_dispensation['eat_time_noon'],
+                                            "eat_time_evening" => $row_dispensation['eat_time_evening'],
+                                            "eat_time_before_sleep" => $row_dispensation['eat_time_before_sleep'],
+                                            "amount" => $row_dispensation['amount']
+                                            );
+
+                                            $i++;
+                                            $amount 				= $row_dispensation["amount"];
+                                            $use_position 			= $row_dispensation["use_position"];
+                                            $eatperday_time 		= $row_dispensation["eatperday_time"];
+                                            $every_hour 			= $row_dispensation["every_hour"];
+                                            $eat_time_meal 			= $row_dispensation["eat_time_meal"];
+                                            $eat_time_morning 		= $row_dispensation["eat_time_morning"];
+                                            $eat_time_noon 			= $row_dispensation["eat_time_noon"];
+                                            $eat_time_evening 		= $row_dispensation["eat_time_evening"];
+                                            $eat_time_before_sleep 	= $row_dispensation["eat_time_before_sleep"];
+                                            $drug_id 				= $row_dispensation["drug_id"];
+
+                                            $sql = "SELECT * FROM drugs WHERE id = $drug_id";
+                                            $answer = $conn->query($sql);
+                                            $line = $answer->fetch_assoc();
+                                            $generic_eng 	= $line["generic_eng"];
+                                            $generic_thai 	= $line["generic_tha"];
+                                            $trade_name 	= $line["trade_name"];
+                                            $symptom_time 	= $line["symptom_time"];
+                                            $eat_style 		= $line["eat_style"];
+                                            $note 			= $line["note"];
+                                            ?>
+                                            <tr>
+                                                <th>Drug #<?=$i?></th>
+                                                <td><?=$generic_eng?>(<?=$trade_name?>) : <?=$amount?></td>
+                                            </tr>
+                                            <?php
+															}
+														?>
+                                            <tr>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <b>Price : </b><?=$price?> บาท<br>
+                                    </div>
+                                    <!--<button type="button" class="btn btn-default " style="float: right;" onclick = "toggle_detail('<?=$count?>')">ลายเอียดเพิ่มเติม</button>-->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <span class="cd-date"><b>create : </b><?=$date_time?></span><span class="cd-date" style="padding-left: 20px;"><b>modify : </b><?=$current_modify?></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 text-right">
+                                        <form action="delete_treatment_record_process.php" method="POST" role="form">
+                                            <input type="hidden" name="patient_id" value="<?=$patient_id?>">
+                                            <input type="hidden" name="treatment_record_id" value="<?=$treatment_record_id?>">
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Examination will not save.\nAre you sure to delete?');" style="float: right; margin: 0 0 0 10px;">Delete</button>
+                                        </form>
+                                        <form action="{{ url('doctor/remed') }}" method="POST" role="form" <?= $count_dispensation == 0 ? "style='display:none'" : "" ?>>
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="patient_id" value="<?=$patient_id?>">
+                                        <input type="hidden" name="treatment_record_id" value="<?=$treatment_record_id?>">
+                                        <input type="hidden" name="isFromExamination" value="1">
+                                        <button type="submit" class="btn btn-sm btn-info" onclick="return confirm('Examination will not save.\nAre you sure to remed?');" style="float: right; margin: 0 0 0 10px;">Remed</button>
+                                        </form>
+                                        <form>
+                                            <button type="button" class="btn btn-success btn-sm" onClick="selectDrugsFormHistory(<?= $treatment_record_id ?>)" <?= $count_dispensation == 0 ? "style='display:none; float: right;'" : "" ?>>Select these Drugs</button>
+                                        </form>
+                                    </div>
+                                </div> <!-- cd-timeline-content -->
+                            </div> <!-- cd-timeline-block -->
+                            <?php
+								}
+							?>
+                        </section> <!-- cd-timeline -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            <?php
+                $json_drug_array = json_encode($drug_array);
+            echo "var drug_array = $json_drug_array;";
+                ?>
+
+            // $("[class*='customin']").hide();
+            function changeDrug(i)
+            {
+                var drug_id = $('#select2-drug'+i).val();
+
+                // dynamic custiom
+                drug_type = drug_array[drug_id].type;
+                $(".customin"+i).hide();
+                $(".customin-"+drug_type+i).show();
+
+                if (drug_type == "drops")
+                {
+                    if (drug_array[drug_id]['use_position'] == "lefteye")
+                    {
+                        $("#drug_drops_left"+i).prop('checked', true);
+                        $("#drug_drops_right"+i).prop('checked', false);
+                    }
+                    else if (drug_array[drug_id]['use_position'] == "righteye")
+                    {
+                        $("#drug_drops_left"+i).prop('checked', false);
+                        $("#drug_drops_right"+i).prop('checked', true);
+                    }
+                    else
+                    {
+                        $("#drug_drops_left"+i).prop('checked', true);
+                        $("#drug_drops_right"+i).prop('checked', true);
+                    }
+                }
+
+                $('#drug'+i+'_use_position').val(drug_array[drug_id]['use_position']);
+                $('#drug'+i+'_eatperday_time').val(drug_array[drug_id]['eatperday_time']);
+                $('#drug'+i+'_every_hour').val(drug_array[drug_id]['every_hour']);
+                $('#drug'+i+'_note').val(drug_array[drug_id]['note']);
+                $('#drug'+i+'_benefit').val(drug_array[drug_id]['benefit_eng']);
+                $('#select2-trade_name'+i+'').val(drug_array[drug_id]['trade_name']);
+                $('#select2-select2-trade_name'+i+'-container').text(drug_array[drug_id]['trade_name']);
+
+                if (drug_array[drug_id]['eat_time_meal'] == "before_meal")
+                {
+                    $("input[id=drug"+i+"_eat_time_meal][value='before_meal']").prop('checked', true);
+                    $('#drug'+i+'_except').val("");
+                }
+                else if (drug_array[drug_id]['eat_time_meal'] == "after_meal")
+                {
+                    $("input[id=drug"+i+"_eat_time_meal][value='after_meal']").prop('checked', true);
+                    $('#drug'+i+'_except').val("");
+                }
+                else
+                {
+                    $("input[id=drug"+i+"_eat_time_meal][value='except']").prop('checked', true);
+                    $('#drug'+i+'_except').val(drug_array[drug_id]['eat_time_meal']);
+                }
+
+                if (drug_array[drug_id]['eat_time_morning'] == 1)
+                    $('#drug'+i+'_eat_time_morning').prop('checked', true);
+                else
+                    $('#drug'+i+'_eat_time_morning').prop('checked', false);
+
+                if (drug_array[drug_id]['eat_time_noon'] == 1)
+                    $('#drug'+i+'_eat_time_noon').prop('checked', true);
+                else
+                    $('#drug'+i+'_eat_time_noon').prop('checked', false);
+
+                if (drug_array[drug_id]['eat_time_evening'] == 1)
+                    $('#drug'+i+'_eat_time_evening').prop('checked', true);
+                else
+                    $('#drug'+i+'_eat_time_evening').prop('checked', false);
+
+                if (drug_array[drug_id]['eat_time_before_sleep'] == 1)
+                    $('#drug'+i+'_eat_time_before_sleep').prop('checked', true);
+                else
+                    $('#drug'+i+'_eat_time_before_sleep').prop('checked', false);
+            }
+
+            function drugDropsChange(i)
+            {
+                var left=0, right=0, text="";
+                if($("#drug_drops_left"+i).prop('checked') == true)
+                    left = 1;
+                if($("#drug_drops_right"+i).prop('checked') == true)
+                    right = 1;
+                if (left == 1 && right == 1)
+                    text="lefteyeandrighteye";
+                else if (left == 1)
+                    text="lefteye";
+                else if (right == 1)
+                    text="righteye";
+                else
+                    text="lefteyeandrighteye";
+
+                $("#drug"+i+"_use_position").val(text);
+            }
+        </script>
+
+        <!-- show relatives following the number of relatives input -->
+        <script type="text/javascript">
+            function toggle_detail(num){
+                var detail_count = 'div.detail'.concat(num);
+                $(detail_count).slideToggle(500);
+            }
+        </script>
+        <!-- end show relatives following the number of relatives input -->
+
+        <!-- select 2 -->
+        <link href="{{ url('assets/plugin/select2/select2.min.css') }}" rel="stylesheet" />
+        <script src="{{ url('assets/plugin/select2/select2.min.js') }}"></script>
+
+        <!-- select 2 -->
+
+        <script type="text/javascript">
+            $('#select2').select2();
+            for (i = 1; i <= 20; i++) {
+                $('#select2-trade_name'+i).select2();
+                $('#select2-drug'+i).select2();
+            }
+            $('#select2-trade_name1').on('select2:close', function (evt) {
+                $('#select2-drug1').focus();
+                $('#select2-drug1').trigger('change');
+            });
+            $('#select2-drug1').on('select2:close', function (evt) {
+                $('#drug-amount1').select();
+                $('#drug-amount1').focus();
+            });
+            $('#select2-trade_name2').on('select2:close', function (evt) {
+                $('#select2-drug2').focus();
+                $('#select2-drug2').trigger('change');
+            });
+            $('#select2-drug2').on('select2:close', function (evt) {
+                $('#drug-amount2').select();
+                $('#drug-amount2').focus();
+            });
+            $('#select2-trade_name3').on('select2:close', function (evt) {
+                $('#select2-drug3').focus();
+                $('#select2-drug3').trigger('change');
+            });
+            $('#select2-drug3').on('select2:close', function (evt) {
+                $('#drug-amount3').select();
+                $('#drug-amount3').focus();
+            });
+            $('#select2-trade_name4').on('select2:close', function (evt) {
+                $('#select2-drug4').focus();
+                $('#select2-drug4').trigger('change');
+            });
+            $('#select2-drug4').on('select2:close', function (evt) {
+                $('#drug-amount4').select();
+                $('#drug-amount4').focus();
+            });
+            $('#select2-trade_name5').on('select2:close', function (evt) {
+                $('#select2-drug5').focus();
+                $('#select2-drug5').trigger('change');
+            });
+            $('#select2-drug5').on('select2:close', function (evt) {
+                $('#drug-amount5').select();
+                $('#drug-amount5').focus();
+            });
+            $('#select2-trade_name6').on('select2:close', function (evt) {
+                $('#select2-drug6').focus();
+                $('#select2-drug6').trigger('change');
+            });
+            $('#select2-drug6').on('select2:close', function (evt) {
+                $('#drug-amount6').select();
+                $('#drug-amount6').focus();
+            });
+            $('#select2-trade_name7').on('select2:close', function (evt) {
+                $('#select2-drug7').focus();
+                $('#select2-drug7').trigger('change');
+            });
+            $('#select2-drug7').on('select2:close', function (evt) {
+                $('#drug-amount7').select();
+                $('#drug-amount7').focus();
+            });
+            $('#select2-trade_name8').on('select2:close', function (evt) {
+                $('#select2-drug8').focus();
+                $('#select2-drug8').trigger('change');
+            });
+            $('#select2-drug8').on('select2:close', function (evt) {
+                $('#drug-amount8').select();
+                $('#drug-amount8').focus();
+            });
+            $('#select2-trade_name9').on('select2:close', function (evt) {
+                $('#select2-drug9').focus();
+                $('#select2-drug9').trigger('change');
+            });
+            $('#select2-drug9').on('select2:close', function (evt) {
+                $('#drug-amount9').select();
+                $('#drug-amount9').focus();
+            });
+            $('#select2-trade_name10').on('select2:close', function (evt) {
+                $('#select2-drug10').focus();
+                $('#select2-drug10').trigger('change');
+            });
+            $('#select2-drug10').on('select2:close', function (evt) {
+                $('#drug-amount10').select();
+                $('#drug-amount10').focus();
+            });
+            $('#select2-trade_name11').on('select2:close', function (evt) {
+                $('#select2-drug11').focus();
+                $('#select2-drug11').trigger('change');
+            });
+            $('#select2-drug11').on('select2:close', function (evt) {
+                $('#drug-amount11').select();
+                $('#drug-amount11').focus();
+            });
+            $('#select2-trade_name12').on('select2:close', function (evt) {
+                $('#select2-drug12').focus();
+                $('#select2-drug12').trigger('change');
+            });
+            $('#select2-drug12').on('select2:close', function (evt) {
+                $('#drug-amount12').select();
+                $('#drug-amount12').focus();
+            });
+            $('#select2-trade_name13').on('select2:close', function (evt) {
+                $('#select2-drug13').focus();
+                $('#select2-drug13').trigger('change');
+            });
+            $('#select2-drug13').on('select2:close', function (evt) {
+                $('#drug-amount13').select();
+                $('#drug-amount13').focus();
+            });
+            $('#select2-trade_name14').on('select2:close', function (evt) {
+                $('#select2-drug14').focus();
+                $('#select2-drug14').trigger('change');
+            });
+            $('#select2-drug14').on('select2:close', function (evt) {
+                $('#drug-amount14').select();
+                $('#drug-amount14').focus();
+            });
+            $('#select2-trade_name15').on('select2:close', function (evt) {
+                $('#select2-drug15').focus();
+                $('#select2-drug15').trigger('change');
+            });
+            $('#select2-drug15').on('select2:close', function (evt) {
+                $('#drug-amount15').select();
+                $('#drug-amount15').focus();
+            });
+            $('#select2-trade_name16').on('select2:close', function (evt) {
+                $('#select2-drug16').focus();
+                $('#select2-drug16').trigger('change');
+            });
+            $('#select2-drug16').on('select2:close', function (evt) {
+                $('#drug-amount16').select();
+                $('#drug-amount16').focus();
+            });
+            $('#select2-trade_name17').on('select2:close', function (evt) {
+                $('#select2-drug17').focus();
+                $('#select2-drug17').trigger('change');
+            });
+            $('#select2-drug17').on('select2:close', function (evt) {
+                $('#drug-amount17').select();
+                $('#drug-amount17').focus();
+            });
+            $('#select2-trade_name18').on('select2:close', function (evt) {
+                $('#select2-drug18').focus();
+                $('#select2-drug18').trigger('change');
+            });
+            $('#select2-drug18').on('select2:close', function (evt) {
+                $('#drug-amount18').select();
+                $('#drug-amount18').focus();
+            });
+            $('#select2-trade_name19').on('select2:close', function (evt) {
+                $('#select2-drug19').focus();
+                $('#select2-drug19').trigger('change');
+            });
+            $('#select2-drug19').on('select2:close', function (evt) {
+                $('#drug-amount19').select();
+                $('#drug-amount19').focus();
+            });
+            $('#select2-trade_name20').on('select2:close', function (evt) {
+                $('#select2-drug20').focus();
+                $('#select2-drug20').trigger('change');
+            });
+            $('#select2-drug20').on('select2:close', function (evt) {
+                $('#drug-amount20').select();
+                $('#drug-amount20').focus();
+            });
+
+            function changeTradename(i)
+            {
+            <?php
+                $json_drug_array = json_encode($drug_array);
+                echo "var drug_array = $json_drug_array;";
+                    ?>
+
+                var trade_name = $("#select2-trade_name"+i).val();
+
+                if (trade_name == "")
+                {
+                    $("#select2-drug"+i+" option").remove();
+
+                    $("#select2-drug"+i).append($('<option/>', {
+                        value: "",
+                        text : "-- Please select --",
+                        name : "please-select"
+                    }));
+                    $.each( drug_array, function( key, value ) {
+                        $("#select2-drug"+i).append($('<option/>', {
+                            name: value['trade_name'],
+                            value: value['id'],
+                            text : value['generic_eng']
+                        }));
+                    });
+
+                    $("#select2-drug"+i).val("");
+                }
+                else
+                {
+                    $("#select2-drug"+i+" option").remove();
+
+                    $("#select2-drug"+i).append($('<option/>', {
+                        value: "",
+                        text : "-- Please select --",
+                        name : "please-select"
+                    }));
+                    $.each( drug_array, function( key, value ) {
+                        if (value['trade_name'] == trade_name)
+                        {
+                            $("#select2-drug"+i).append($('<option/>', {
+                                name: value['trade_name'],
+                                value: value['id'],
+                                text : value['generic_eng']
+                            }));
+                        }
+                    });
+
+                    $("#select2-drug"+i).prop('selectedIndex', 1);
+                    changeDrug(i);
+                }
+            }
+
+            function amount_drug_function(amount)
+            {
+                var $relatives_number = amount;
+
+                $("[id*='select2-drug']").prop('required',false);
+
+                if ($relatives_number >= 1)
+                {
+                    //$('div.select-drug').hide();
+
+                    for ($i = 1 ; $i <= $relatives_number ; $i++)
+                    {
+                        $temp = 'div.select-drug-'+$i;
+                        $($temp).show(500);
+                        $("#select2-drug"+$i).prop('required',true);
+                    }
+
+                    for ($i = $relatives_number+1 ; $i <= 20 ; $i++)
+                    {
+                        $temp = 'div.select-drug-'+$i;
+                        $($temp).hide(500);
+                        $("#select2-drug"+$i).prop('required',false);
+                    }
+                }
+                else
+                {
+                    $('div.select-drug').hide(500);
+                }
+            }
+
+            var amount_drug = 0;
+
+            <?php
+            if(isset($_POST['treatment_record_id']))
+            {
+                    ?>
+                amount_drug = <?=$remed_drug_amount?>;
+                if (amount_drug > 0)
+                {
+                    $('#minus-amount-drug').show();
+                }
+                $("#amount_drug").val(amount_drug);
+            <?php
+            }
+                ?>
+
+            function plus_amount_drug()
+            {
+                if (amount_drug < 20)
+                {
+                    amount_drug++;
+                    $('#amount_drug').val(amount_drug);
+                    amount_drug_function(amount_drug);
+
+                    // hide plus-button when amount_drug = 20
+                    if (amount_drug == 20)
+                    {
+                        $('#plus-amount-drug').fadeOut(500);
+                    }
+                    // show minus-button when amount_drug == 1
+                    if (amount_drug == 1)
+                    {
+                        $('#minus-amount-drug').fadeIn(500);
+                        $('#modal-allergy').modal('show');
+                    }
+                }
+            }
+            function minus_amount_drug()
+            {
+                if (amount_drug > 0)
+                {
+                    amount_drug--;
+                    $('#amount_drug').val(amount_drug);
+                    amount_drug_function(amount_drug);
+                }
+
+                // hide minus-button when amount_drug == 0
+                if (amount_drug == 0)
+                {
+                    $('#minus-amount-drug').fadeOut(500);
+                }
+                // show plus-button when amount_drug == 19
+                if (amount_drug == 19)
+                {
+                    $('#plus-amount-drug').fadeIn(500);
+                }
+            }
+
+            function checkbox_drug(i)
+            {
+                if ($("#select_drug_array"+i).val() == 1)
+                    $("#select_drug_array"+i).val(0);
+                else
+                    $("#select_drug_array"+i).val(1);
+            }
+        </script>
+        <!-- end select 2 -->
+
+        <!-- datetimepicker -->
+        <script type="text/javascript">
+            // $.datetimepicker.setLocale('th'); // ต้องกำหนดเสมอถ้าใช้ภาษาไทย และ เป็นปี พ.ศ.
+            // // กรณีใช้แบบ input
+            //    $("#appointment_date").datetimepicker({
+            //        timepicker:false,
+            //        format:'d/m/Y',  // กำหนดรูปแบบวันที่ ที่ใช้ เป็น 00/00/0000
+            //        lang:'th',  // ต้องกำหนดเสมอถ้าใช้ภาษาไทย และ เป็นปี พ.ศ.
+            // 	onSelectDate:function(dp,$input){
+            // 		var yearT=new Date(dp).getFullYear()-0;
+            // 		var yearTH=yearT+543;
+            // 		var fulldate=$input.val();
+            // 		var fulldateTH=fulldate.replace(yearT,yearTH);
+            // 		$input.val(fulldateTH);
+            // 	},
+            //    });
+            // // กรณีใช้กับ input ต้องกำหนดส่วนนี้ด้วยเสมอ เพื่อปรับปีให้เป็น ค.ศ. ก่อนแสดงปฏิทิน
+            // $("#appointment_date").on("mouseenter mouseleave",function(e){
+            // 	var dateValue=$(this).val();
+            // 	if(dateValue!=""){
+            // 			var arr_date=dateValue.split("/"); // ถ้าใช้ตัวแบ่งรูปแบบอื่น ให้เปลี่ยนเป็นตามรูปแบบนั้น
+            // 			// ในที่นี้อยู่ในรูปแบบ 00/00/0000 เป็น d/m/Y  แบ่งด่วย - ดังนั้น ตัวแปรที่เป็นปี จะอยู่ใน array
+            // 			//  ตัวที่สอง arr_date[2] โดยเริ่มนับจาก 0
+            // 			if(e.type=="mouseenter"){
+            // 				var yearT=arr_date[2]-543;
+            // 			}
+            // 			if(e.type=="mouseleave"){
+            // 				var yearT=parseInt(arr_date[2])+543;
+            // 			}
+            // 			dateValue=dateValue.replace(arr_date[2],yearT);
+            // 			$(this).val(dateValue);
+            // 	}
+            // });
+
+            $('.timepicker').datetimepicker({
+                timepicker:true,
+                datepicker:false,
+                format: 'H:i',
+                step:30
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(function () {
+                var d = new Date();
+                var toDay = d.getDate() + '/'
+                    + (d.getMonth() + 1) + '/'
+                    + (d.getFullYear() + 543);
+
+                // Datepicker
+                $("#appointment_date").datepicker({ dateFormat: 'dd/mm/yy', isBuddhist: true, defaultDate: toDay, dayNames: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'],
+                    dayNamesMin: ['อา.','จ.','อ.','พ.','พฤ.','ศ.','ส.'],
+                    monthNames: ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'],
+                    monthNamesShort: ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.']});
+            });
+        </script>
+        <!-- end datetimepicker -->
+
+        <!-- select drug form history -->
+        <script type="text/javascript">
+            <?php
+                $json_history_drug_array = json_encode($history_drug_array);
+            echo "var history_drug_array = $json_history_drug_array;";
+            $json_drug_array = json_encode($drug_array);
+            echo "var drug_array = $json_drug_array;";
+                ?>
+
+            function selectDrugsFormHistory(treatment_record_id)
+            {
+                $("[class*='customin']").hide();
+
+                var history_drug = history_drug_array[treatment_record_id];
+
+                amount_drug = history_drug.length;
+                $("#amount_drug").val(history_drug.length);
+                for (i = 1 ; i <= history_drug.length ; i++)
+                {
+                    $('#drug-amount'+i).val(history_drug[i-1]['amount']);
+                    $('#select2-drug'+i).val(history_drug[i-1]['id']);
+                    // $('#select2-drug'+i).select2("val", history_drug[i-1]['id']);
+
+                    $temp = 'div.select-drug-'+i;
+                    $($temp).show(500);
+
+                    var remed_drug_type = drug_array[history_drug[i-1]['id']]["type"];
+                    $(".customin-"+remed_drug_type+i).show();
+                    if (remed_drug_type == "drops")
+                    {
+                        if (history_drug[i-1]['use_position'] == "lefteye")
+                        {
+                            $("#drug_drops_left"+i).prop('checked', true);
+                            $("#drug_drops_right"+i).prop('checked', false);
+                        }
+                        else if (history_drug[i-1]['use_position'] == "righteye")
+                        {
+                            $("#drug_drops_left"+i).prop('checked', false);
+                            $("#drug_drops_right"+i).prop('checked', true);
+                        }
+                        else
+                        {
+                            $("#drug_drops_left"+i).prop('checked', true);
+                            $("#drug_drops_right"+i).prop('checked', true);
+                        }
+                    }
+
+                    $('#drug'+i+'_use_position').val(history_drug[i-1]['use_position']);
+                    $('#drug'+i+'_eatperday_time').val(history_drug[i-1]['eatperday_time']);
+                    $('#drug'+i+'_every_hour').val(history_drug[i-1]['every_hour']);
+                    $('#drug'+i+'_note').val(history_drug[i-1]['note']);
+                    $('#select2-trade_name'+i).val(drug_array[history_drug[i-1]['id']]['trade_name']);
+                    $('#select2-select2-trade_name'+i+'-container').text(drug_array[history_drug[i-1]['id']]['trade_name']);
+
+                    // label remed
+                    $("#select2-select2-drug"+i+"-container").text(drug_array[history_drug[i-1]['id']]['generic_eng']);
+                    $("#remed-tradename"+i).val(drug_array[history_drug[i-1]['id']]['trade_name']);
+
+                    if (history_drug[i-1]['eat_time_meal'] == "before_meal")
+                        $("input[id=drug"+i+"_eat_time_meal][value='before_meal']").prop('checked', true);
+                    else if (history_drug[i-1]['eat_time_meal'] == "after_meal")
+                        $("input[id=drug"+i+"_eat_time_meal][value='after_meal']").prop('checked', true);
+                    else
+                    {
+                        $("input[id=drug"+i+"_eat_time_meal][value='except']").prop('checked', true);
+                        $('#drug'+i+'_except').val(history_drug[i-1]['eat_time_meal']);
+                    }
+
+                    if (history_drug[i-1]['eat_time_morning'] == 1)
+                        $('#drug'+i+'_eat_time_morning').prop('checked', true);
+                    else
+                        $('#drug'+i+'_eat_time_morning').prop('checked', false);
+
+                    if (history_drug[i-1]['eat_time_noon'] == 1)
+                        $('#drug'+i+'_eat_time_noon').prop('checked', true);
+                    else
+                        $('#drug'+i+'_eat_time_noon').prop('checked', false);
+
+                    if (history_drug[i-1]['eat_time_evening'] == 1)
+                        $('#drug'+i+'_eat_time_evening').prop('checked', true);
+                    else
+                        $('#drug'+i+'_eat_time_evening').prop('checked', false);
+
+                    if (history_drug[i-1]['eat_time_before_sleep'] == 1)
+                        $('#drug'+i+'_eat_time_before_sleep').prop('checked', true);
+                    else
+                        $('#drug'+i+'_eat_time_before_sleep').prop('checked', false);
+                }
+
+                $('#minus-amount-drug').fadeIn(500);
+                amount_drug_function(amount_drug);
+
+                $('.tab-header[href=#treatment]').click();
+                $('html,body').animate({ scrollTop: 99999999999 }, 300);
+            }
+        </script>
+        <!-- end select drug form history -->
+
+        @endsection

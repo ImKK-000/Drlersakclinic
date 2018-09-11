@@ -1,0 +1,302 @@
+<% extend('../template/layout-main') %>
+
+<style type="text/css">
+    label {
+        margin-top: 6px;
+    }
+    .td-action {
+    //max-width: 25px;
+    }
+    .fa-user-plus {
+        padding-top: 3px;
+        color: #555555;
+    }
+    .fa-user-plus:hover {
+        color: #29BEC5;
+    }
+    /* modal */
+    .modal-header {
+        padding-bottom: 5px;
+    }
+    .modal-footer {
+        padding: 0;
+    }
+    .modal-footer .btn-group button {
+        height:40px;
+        border-top-left-radius : 0;
+        border-top-right-radius : 0;
+        border: none;
+        border-right: 1px solid #ddd;
+    }
+    .modal-footer .btn-group:last-child > button {
+        border-right: 0;
+    }
+    .table-main td {
+        background-color: white;
+    }
+    .row-search {
+        height: 10px;
+    }
+    /* end modal */
+    .tittle{
+        margin-top: -100px;
+        margin-left: -70px;
+        color:white;
+    }
+
+    detail {
+        font-weight: normal;
+    }
+    .modal-dialog {
+        width: 650px;
+    }
+
+
+    // page loading
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+    @keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+    @-webkit-keyframes pulse {
+        50% {
+            background: white;
+        }
+    }
+    @keyframes pulse {
+        50% {
+            background: white;
+        }
+    }
+
+    .loading {
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        border: 0.25rem solid rgba(126, 116, 116, 0.2);
+        border-top-color: #968f8f;
+        -webkit-animation: spin 1s infinite linear;
+        animation: spin 1s infinite linear;
+    }
+    .loading--double {
+        border-style: double;
+        border-width: 2rem;
+    }
+</style>
+<script type="text/javascript">
+</script>
+<div class="container main-content">
+    <div class="jumbotron">
+        <div class = "col-md-12 tittle">
+            <h3 id="main-title">{{ $title }}</h3>
+        </div>
+
+        <div class="row row-search">
+
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-md-offset-4"></div>
+
+        </div>
+
+        <div class="row" style="margin-top: 40px;">
+            <div class="col-md-12" id="divPageLoader" style="display: none;">
+                <div class="loading loading--double" style="width: 90px; height: 90px; margin: 0 auto;"></div>
+            </div>
+            <div class="col-md-12" id="divContent" >
+
+                <table id="resultTable" class="table table-hover table-condensed table-main">
+                    <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th><center>Age</center></th>
+                        <th class='hr-icon-action'></th>
+                        <th class='hr-icon-action'></th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div id="total_entries" name="total_entries" style="margin: 8px 0;"></div>
+                    </div>
+                    <div class="col-md-8">
+                        <ul class="pagination pull-right justify-content-end" id="table_paginate" style="margin: 0px 0; display: none;">
+                            <li class="page-item"><a href="#!" data-idx="1" tabindex="0">First</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- modal -->
+<!-- medical certificate 2 modal -->
+<div class="modal fade" id="medical_certificate2" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        {!! Form::open(['route'=>'medicalCertificate2', 'method'=>'POST', 'target'=>'_blank']) !!}
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h2 class="modal-title text-center" id="lineModalLabel">ใบรับรองแพทย์เพื่อการสมัครงาน/ใบขับขี่</h2>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-2" style="padding-right: 5px;">
+                        <label for="">คำนำหน้า</label>
+                        <!-- <input type="text" class="form-control" placeholder="" required name="prefix"> -->
+                        <select class="form-control" name="prefix" style="padding-left: 5px; padding-right: 0px;">
+                            <option>นาย</option>
+                            <option>นาง</option>
+                            <option>นางสาว</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="">ชื่อ</label>
+                        <input type="text" class="form-control" placeholder="" required name="firstname">
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="">นามสกุล</label>
+                        <input type="text" class="form-control" placeholder="" required name="lastname">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="">สรุปข้อเสนอแนะของแพทย์</label>
+                        <textarea class="form-control" rows="5"required name="doctor_suggestion"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="button submit" class="btn btn-success btn-hover-green" role="button" name="insert_queue">Print</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"  role="button">Cancle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ Form::close() }}
+    </div>
+</div>
+<!-- end medical certificate 2 modal -->
+<div class="modal fade" id="enqueue" tabindex="-1" role="dialog" aria-labelledby="enqueue" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="{{ url('queue') }}" method="POST" role="form">
+            {!! csrf_field() !!}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h2 class="modal-title text-center" id="lineModalLabel">Queued</h2>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Age</th>
+                        </tr>
+                        </thead>
+                        <tbody class="modal-body-info">
+                        <tr>
+                            <td>$code</td>
+                            <td>$name</td>
+                            <td>$gender</td>
+                            <td>$age</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- content goes here -->
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="">Chief Complaint (อาการสำคัญ)<span style="color: red; font-size: 130%;">**</span></label>
+                            <input type="text" class="form-control" placeholder="" required name="chief_complaint">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="">Present illness (ประวัติปัจจุบัน)</label>
+                            <textarea class="form-control" rows="5" name="present_illness"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="">Body temperature (อุณหภูมิของร่างกาย)<detail> (°C)</detail></label>
+                            <input type="number" class="form-control" placeholder="" min="0" max="" step="0.01" name="temperature">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Blood pressure (ความดันโลหิต)<detail> (mmHg)</detail></label>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <input type="number" class="form-control pressure_1" placeholder="" min="0" max="" step="0.01" name="pressure_1">
+                                </div>
+                                <div class="col-md-2">
+                                    <label style="font-size: 200%; padding-left: 5px;">/</label>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="number" class="form-control pressure_2" placeholder="" min="0" max="" step="0.01" name="pressure_2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="">Heart rate (อัตราการเต้นของหัวใจ)<detail> (per min)</detail></label>
+                            <input type="number" class="form-control" placeholder="" min="0" max="" step="0.01" name="heart">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Respiratory rate (อัตราการหายใจ)<detail> (per min)</detail></label>
+                            <input type="number" class="form-control" placeholder="" min="0" max="" step="0.01" name="respiratory">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="">Body Weight (น้ำหนักตัว)<detail> (kg)</detail></label>
+                            <input type="number" class="form-control" placeholder="" min="0" max="" step="0.01" name="weight">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Height (ความสูง)<detail> (cm)</detail></label>
+                            <input type="number" class="form-control" placeholder="" min="0" max="" step="0.01" name="height">
+                        </div>
+                    </div>
+                    <!-- <button type="submit" class="btn btn-success btn-block">Queued</button> -->
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                        <div class="btn-group" role="group">
+                            <button type="button submit" class="btn btn-success btn-hover-green" role="button" name="insert_queue">Submit</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"  role="button">Cancle</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
